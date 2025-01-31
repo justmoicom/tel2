@@ -403,7 +403,7 @@ function handleSubmit(event) {
         element.value = element.value.slice(0, 3);
     }
 }
-
+// Disable right click on the page function disableRightClick() { document.addEventListener('contextmenu', function(e) { e.preventDefault(); });
     // Function to capitalize the first letter of each word in a string
     function capitalizeFirstLetter(string) {
         return string.charAt(0).toUpperCase() + string.slice(1);
