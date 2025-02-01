@@ -57,7 +57,7 @@
     .form_block input[type="text"],
     .form_block input[type="tel"] {
       width: 100%;
-      padding: 10px;
+      padding: 12px;
       margin-bottom: 15px;
       border: 1px solid #ccc;
       border-radius: 5px;
@@ -65,7 +65,7 @@
     }
     .form_block button {
       width: 100%;
-      padding: 10px;
+      padding: 12px;
       background-color: #28a745;
       color: white;
       border: none;
@@ -76,9 +76,16 @@
 
     footer {
       text-align: center;
-      padding: 15px;
-      background-color: transparent; /* Fond transparent */
+      padding: 20px;
+      background-color: transparent;
       margin-top: 20px;
+    }
+    footer h6 {
+      font-size: 16px;
+    }
+    footer img {
+      max-width: 80%; /* Limiter la taille de l'image pour les petits écrans */
+      height: auto;
     }
 
     /* Media queries pour adapter le contenu aux petits écrans */
@@ -104,6 +111,14 @@
 
       .product_title h1 {
         font-size: 22px;
+      }
+
+      footer h6 {
+        font-size: 14px; /* Réduire la taille de texte pour les petits écrans */
+      }
+
+      footer img {
+        max-width: 50%; /* Adapter l'image pour qu'elle soit bien visible sur les petits écrans */
       }
     }
   </style>
@@ -174,7 +189,7 @@
     <div class="container">
       <div class="block-reassurance">
         <h6>Cartes de crédit acceptées :</h6>
-        <img src="https://cdn.soopercdn.com/cp/iphone-15-pro/assets/images/card-logo.svg" alt="Cartes" width="317" height="54">
+        <img src="https://cdn.soopercdn.com/cp/form-campaign-checkout-v2/assets/images/card.svg" alt="Cartes" width="317" height="54">
       </div>
     </div>
   </footer>
